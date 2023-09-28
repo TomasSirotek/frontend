@@ -65,19 +65,19 @@ module.exports = {
         custom: '0px 0px 50px 0px rgb(82 63 105 / 15%)',
       },
       colors: {
-        primary: colors.green,
+        primary: colors.blue,
         night: {
-          50: '#e4e4eb',
-          100: '#bbbace',
-          200: '#8f8ead',
-          300: '#66658c',
-          400: '#4b4777',
-          500: '#302a62',
-          600: '#2b245b',
-          700: '#241c51',
-          800: '#1c1445',
-          900: '#130030',
-        },
+          50: '#ffffff',   /* Lightest shade (white) */
+          100: '#ffffff',  /* Lighter shade */
+          200: '#ffffff',  /* Light shade */
+          300: '#ffffff',  /* Base shade (the bluish color) */
+          400: '#ffffff',  /* Slightly darker shade */
+          500: '#ffffff',  /* Slightly darker shade */
+          600: '#091018',  /* Darker shade */
+          700: '#070e16',  /* Dark shade */
+          800: '#050c14',  /* Darker shade */
+          900: '#030a12',  /* Darkest shade */
+        }
       },
     },
     fontFamily: {

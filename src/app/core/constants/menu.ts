@@ -11,10 +11,35 @@ export class Menu {
           label: 'Dashboard',
           route: '/dashboard',
           children: [
-            { label: 'Home', route: '/dashboard/home' },
-            { label: 'Boxes Management', route: '/dashboard/boxes' },
+            { label: 'Dashboard', route: '/dashboard/home' },
           ],
         },
+      ],
+    },
+    {
+      group: 'Management',
+      separator: true,
+      items: [
+        {
+          icon: 'assets/icons/heroicons/outline/folder.svg',
+          label: 'Overview',
+          route: '/overview',
+          children: [
+            { label: 'Boxes Management', route: '/dashboard/boxes' },
+            { label: 'Orders', route: '/dashboard/orders' },
+          ],
+        },
+      ],
+    },
+    {
+      group: 'Features',
+      separator: false,
+      items: [
+        {
+          icon: 'assets/icons/heroicons/outline/shield-check.svg',
+          label: 'Box Recognition Model',
+          route: '/ai',
+        }
       ],
     },
   ];

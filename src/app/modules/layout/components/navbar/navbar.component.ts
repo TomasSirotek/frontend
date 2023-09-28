@@ -3,6 +3,7 @@ import { MenuService } from '../../services/menu.service';
 import { NavbarMobileComponent } from './navbar-mobile/navbar-mobile.component';
 import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 
 @Component({
     selector: 'app-navbar',
@@ -12,7 +13,9 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     imports: [
         AngularSvgIconModule,
         NavbarMenuComponent,
+        ProfileMenuComponent,
         NavbarMobileComponent,
+
     ],
 })
 export class NavbarComponent implements OnInit {
