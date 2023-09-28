@@ -10,8 +10,8 @@ on:
             - main
     pull_request:
         branches:
-            - development  
-
+            - main        
+            
 jobs:
     Deploy-Production:
         runs-on: ubuntu-latest
