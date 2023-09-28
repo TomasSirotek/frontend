@@ -4,7 +4,6 @@ import packageJson from '../../../../../../package.json';
 import { MenuService } from '../../services/menu.service';
 import { RouterLink } from '@angular/router';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgClass, NgIf } from '@angular/common';
 
 @Component({
@@ -15,7 +14,6 @@ import { NgClass, NgIf } from '@angular/common';
     imports: [
         NgClass,
         NgIf,
-        AngularSvgIconModule,
         SidebarMenuComponent,
         RouterLink,
     ],

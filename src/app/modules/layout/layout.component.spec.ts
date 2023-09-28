@@ -12,6 +12,7 @@ describe('LayoutComponent', () => {
 }).compileComponents();
   });
 
+  debugger
   beforeEach(() => {
     fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;

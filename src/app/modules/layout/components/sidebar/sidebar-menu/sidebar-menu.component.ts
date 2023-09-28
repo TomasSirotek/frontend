@@ -3,7 +3,6 @@ import { SubMenuItem } from 'src/app/core/models/menu.model';
 import { MenuService } from '../../../services/menu.service';
 import { SidebarSubmenuComponent } from '../sidebar-submenu/sidebar-submenu.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
 
 @Component({
@@ -15,7 +14,6 @@ import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
     imports: [
         NgFor,
         NgClass,
-        AngularSvgIconModule,
         NgTemplateOutlet,
         RouterLink,
         RouterLinkActive,

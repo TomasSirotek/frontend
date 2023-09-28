@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SubMenuItem } from 'src/app/core/models/menu.model';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { NgFor, NgTemplateOutlet, NgIf } from '@angular/common';
 
@@ -14,8 +13,7 @@ import { NgFor, NgTemplateOutlet, NgIf } from '@angular/common';
         NgTemplateOutlet,
         RouterLinkActive,
         RouterLink,
-        NgIf,
-        AngularSvgIconModule,
+        NgIf
     ],
 })
 export class NavbarSubmenuComponent implements OnInit {

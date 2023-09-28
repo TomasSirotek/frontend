@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+// Import the module that contains ProfileMenuComponent
 import { ProfileMenuComponent } from './profile-menu.component';
 
 describe('ProfileMenuComponent', () => {
@@ -8,8 +8,8 @@ describe('ProfileMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [ProfileMenuComponent],
-}).compileComponents();
+      imports: [ProfileMenuComponent], // Import the module that contains ProfileMenuComponent
+    }).compileComponents();
   });
 
   beforeEach(() => {

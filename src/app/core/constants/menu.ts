@@ -7,11 +7,10 @@ export class Menu {
       separator: false,
       items: [
         {
-          icon: 'assets/icons/heroicons/outline/chart-pie.svg',
           label: 'Dashboard',
           route: '/dashboard',
           children: [
-            { label: 'Dashboard', route: '/dashboard/home' },
+            { label: 'Dashboard', route: '/dashboard' },
           ],
         },
       ],
@@ -21,12 +20,11 @@ export class Menu {
       separator: true,
       items: [
         {
-          icon: 'assets/icons/heroicons/outline/folder.svg',
           label: 'Overview',
           route: '/overview',
           children: [
-            { label: 'Boxes Management', route: '/dashboard/boxes' },
-            { label: 'Orders', route: '/dashboard/orders' },
+            { label: 'Boxes Management', route: '/dashboard' },
+            { label: 'Orders', route: '/dashboard' },
           ],
         },
       ],
@@ -36,7 +34,6 @@ export class Menu {
       separator: false,
       items: [
         {
-          icon: 'assets/icons/heroicons/outline/shield-check.svg',
           label: 'Box Recognition Model',
           route: '/ai',
         }

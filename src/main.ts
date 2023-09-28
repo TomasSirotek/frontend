@@ -7,6 +7,7 @@ import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 
+
 if (environment.production) {
     enableProdMode()
     //show this warning only on prod mode
