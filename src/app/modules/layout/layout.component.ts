@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
-// import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
     selector: 'app-layout',
@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     styleUrls: ['./layout.component.scss'],
     standalone: true,
     imports: [
+        SidebarComponent,
         NavbarComponent,
         RouterOutlet
     ],

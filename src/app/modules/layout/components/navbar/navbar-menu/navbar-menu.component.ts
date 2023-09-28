@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'src/app/core/models/menu.model';
 import { MenuService } from '../../../services/menu.service';
+import { NavbarSubmenuComponent } from '../navbar-submenu/navbar-submenu.component';
 import { NgFor, NgClass } from '@angular/common';
 
 @Component({
@@ -10,7 +11,8 @@ import { NgFor, NgClass } from '@angular/common';
     standalone: true,
     imports: [
         NgFor,
-        NgClass
+        NgClass,
+        NavbarSubmenuComponent
     ],
 })
 export class NavbarMenuComponent implements OnInit {
