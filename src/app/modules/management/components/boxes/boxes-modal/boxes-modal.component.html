@@ -18,37 +18,73 @@
           <!-- Left Column: Input Fields -->
           <div class="grid grid-cols-2 gap-4">
             
-            <app-input-field
-            name="title"
-              id="title"
-              placeholder="Box #1"
-              [(ngModel)]="formData.title"
-            ></app-input-field>
+            <div class="mb-4">
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  id="title"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.title"
+                  required
+                >
+            </div>
+            
 
 
-            <app-input-field
-              name="Type"
-              id="type"
-              placeholder="Squared"
-            ></app-input-field>
+            <div class="mb-4">
+                <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="type"
+                  id="type"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.type"
+                  required
+                >
+            </div>
+            
 
-            <app-input-field
-              name="Status"
-              id="status"
-              placeholder="Status"
-            ></app-input-field>
+            <div class="mb-4">
+                <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="status"
+                  id="status"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.status"
+                  required
+                >
+            </div>
+            
+            <div class="mb-4">
+                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="price"
+                  id="price"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.price"
+                  required
+                >
+            </div>
 
-            <app-input-field
-              name="Price"
-              id="price"
-              placeholder="300 Eur"
-            ></app-input-field>
-
-            <app-input-field
-              name="Color"
-              id="color"
-              placeholder="Orange"
-            ></app-input-field>
+            <div class="mb-4">
+                <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="color"
+                  id="color"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.color"
+                  required
+                >
+            </div>
 
             <div class="mb-4">
               <label
@@ -62,7 +98,7 @@
                 name="imageUrlInput"
                 id="imageUrlInput"
                 placeholder="Image URL"
-                [(ngModel)]="imageUrl"
+                [(ngModel)]="formData.imageUrl"
                 class="input-field"
               />
             </div>

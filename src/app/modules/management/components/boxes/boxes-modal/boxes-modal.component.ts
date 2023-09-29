@@ -24,6 +24,10 @@ export class BoxesModalComponent {
   formData = {
     title: '',
     type: '',
+    status: '',
+    price: '',
+    color: '',
+    imageUrl: this.imageUrl
   };
 
   @ViewChild('urlInput') urlInput: ElementRef<HTMLInputElement>;

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
@@ -21,9 +21,8 @@ export class InputComponent implements ControlValueAccessor{
   @Input() id: string;
   @Input() placeholder: string;
   @Input() required: boolean = true;
-  @Input() value: any; // Add this line
+  @Input() value: any; 
   
-
   private onChange: (value: any) => void = () => {};
   private onTouched: () => void = () => {};
 
