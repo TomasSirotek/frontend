@@ -7,6 +7,7 @@ import { NgClass, NgIf } from '@angular/common';
 
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroGlobeAlt,heroInboxStack,heroChevronDoubleLeft,heroSun,heroMoon,heroArrowLeftOnRectangle } from '@ng-icons/heroicons/outline';
+import { RouterLinkActive, RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-sidebar',
@@ -17,7 +18,9 @@ import { heroGlobeAlt,heroInboxStack,heroChevronDoubleLeft,heroSun,heroMoon,hero
         NgClass,
         NgIf,
         SidebarMenuComponent,
-        NgIconComponent
+        NgIconComponent,
+        RouterLinkActive,
+  
     ],
     viewProviders: [provideIcons({heroGlobeAlt, heroArrowLeftOnRectangle, heroInboxStack,heroChevronDoubleLeft,heroSun, heroMoon})]
 })

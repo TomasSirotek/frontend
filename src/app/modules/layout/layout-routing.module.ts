@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { ManagementComponent } from '../management/management.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,11 @@ const routes: Routes = [
     loadChildren: () => import('../dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'error/404' },
+  {
+    path: 'management',
+    component: LayoutComponent,
+    loadChildren: () => import('../management/management.module').then((m) => m.ManagementModule),
+  },
 ];
 
 @NgModule({

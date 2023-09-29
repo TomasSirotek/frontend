@@ -13,6 +13,7 @@ import { NgClass, NgFor, NgTemplateOutlet } from '@angular/common';
         NgClass,
         NgFor,
         NgTemplateOutlet,
+        RouterLinkActive,
     ],
 })
 export class SidebarSubmenuComponent implements OnInit {

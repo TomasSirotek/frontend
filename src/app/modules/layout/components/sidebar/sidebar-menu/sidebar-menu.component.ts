@@ -5,6 +5,8 @@ import { SidebarSubmenuComponent } from '../sidebar-submenu/sidebar-submenu.comp
 import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import {heroBuildingStorefront,heroChevronDoubleRight,heroPhoto,heroFolderOpen} from '@ng-icons/heroicons/outline';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 @Component({
     selector: 'app-sidebar-menu',
     templateUrl: './sidebar-menu.component.html',
@@ -17,7 +19,9 @@ import {heroBuildingStorefront,heroChevronDoubleRight,heroPhoto,heroFolderOpen} 
         NgTemplateOutlet,
         NgIf,
         SidebarSubmenuComponent,
-        NgIconComponent
+        NgIconComponent,
+        RouterLink,
+        RouterLinkActive
     ],
     viewProviders: [provideIcons({ heroBuildingStorefront,heroChevronDoubleRight,heroPhoto,heroFolderOpen})]
 })

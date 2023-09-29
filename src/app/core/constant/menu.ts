@@ -11,22 +11,15 @@ export class Menu {
           label: 'Dashboard',
           route: '/dashboard',
           children: [
-            { label: 'Dashboard', route: '/dashboard' },
+            { label: 'Overview', route: '/dashboard' },
           ],
         },
-      ],
-    },
-    {
-      group: 'Management',
-      separator: true,
-      items: [
         {
           icon:'heroFolderOpen',
-          label: 'Overview',
-          route: '/overview',
+          label: 'Management',
+          route: '/management',
           children: [
-            { label: 'Boxes Management', route: '/dashboard' },
-            { label: 'Orders', route: '/dashboard' },
+            { label: 'Boxes Management', route: 'management/boxes' },
           ],
         },
       ],

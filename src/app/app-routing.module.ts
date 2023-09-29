@@ -6,6 +6,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./modules/layout/layout.module').then((m) => m.LayoutModule),
   },
+  {
+    path: 'management',
+    loadChildren: () => import('./modules/management/management.module').then((m) => m.ManagementModule),
+  },
 ];
 
 @NgModule({
