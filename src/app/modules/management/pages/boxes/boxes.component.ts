@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { BoxesHeaderComponent } from '../../components/boxes/boxes-header/boxes-header.component';
+import { BoxesTableComponent } from '../../components/boxes/boxes-table/boxes-table.component';
 
 @Component({
   selector: 'app-boxes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ CommonModule,BoxesHeaderComponent,BoxesTableComponent],
   templateUrl: './boxes.component.html',
   styleUrls: ['./boxes.component.scss']
 })

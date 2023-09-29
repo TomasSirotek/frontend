@@ -4,7 +4,7 @@ module.exports = {
   prefix: '',
   mode: 'jit',
   important: false,
-  content: ['./src/**/*.{html,ts}',' "./node_modules/flowbite/**/*.js"'],
+  content: ['./src/**/*.{html,ts}'],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
@@ -102,6 +102,5 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
-    require('flowbite/plugin'),
   ],
 }

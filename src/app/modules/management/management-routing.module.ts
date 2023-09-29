@@ -8,10 +8,7 @@ const routes: Routes = [
     path: '',
     component: ManagementComponent,
     children: [
-        { path: 'boxes', redirectTo: 'boxes', pathMatch: 'full' },
         { path: 'boxes', component: BoxesComponent },
-        // place for orders page later
-        { path: '**', redirectTo: 'error/404' },
     ],
   },
 ];

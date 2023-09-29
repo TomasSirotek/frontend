@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { ManagementComponent } from '../management/management.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,6 @@ const routes: Routes = [
     component: LayoutComponent,
     loadChildren: () => import('../management/management.module').then((m) => m.ManagementModule),
   },
-  { path: '**', redirectTo: 'error/404' },
 ];
 
 @NgModule({
