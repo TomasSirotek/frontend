@@ -3,7 +3,8 @@ import { SubMenuItem } from 'src/app/core/models/menu.model';
 import { MenuService } from '../../../services/menu.service';
 import { SidebarSubmenuComponent } from '../sidebar-submenu/sidebar-submenu.component';
 import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
-
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import {heroBuildingStorefront,heroChevronDoubleRight,heroPhoto,heroFolderOpen} from '@ng-icons/heroicons/outline';
 @Component({
     selector: 'app-sidebar-menu',
     templateUrl: './sidebar-menu.component.html',
@@ -16,7 +17,9 @@ import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
         NgTemplateOutlet,
         NgIf,
         SidebarSubmenuComponent,
+        NgIconComponent
     ],
+    viewProviders: [provideIcons({ heroBuildingStorefront,heroChevronDoubleRight,heroPhoto,heroFolderOpen})]
 })
 export class SidebarMenuComponent implements OnInit {
   constructor(public menuService: MenuService) {}

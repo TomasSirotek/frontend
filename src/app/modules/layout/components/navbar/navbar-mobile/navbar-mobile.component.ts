@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { NgClass } from '@angular/common';
 import { NavbarMobileMenuComponent } from './navbar-mobile-menu/navbar-mobile-menu.component';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { heroGlobeAlt,heroXMark } from '@ng-icons/heroicons/outline';
 
 @Component({
     selector: 'app-navbar-mobile',
@@ -11,7 +13,10 @@ import { NavbarMobileMenuComponent } from './navbar-mobile-menu/navbar-mobile-me
     imports: [
         NgClass,
         NavbarMobileMenuComponent,
+        NgIconComponent,
     ],
+    viewProviders: [provideIcons({heroGlobeAlt,heroXMark })]
+
 })
 export class NavbarMobileComponent implements OnInit {
   constructor(public menuService: MenuService) {}

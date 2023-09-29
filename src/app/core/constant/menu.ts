@@ -7,6 +7,7 @@ export class Menu {
       separator: false,
       items: [
         {
+          icon: 'heroBuildingStorefront',
           label: 'Dashboard',
           route: '/dashboard',
           children: [
@@ -20,6 +21,7 @@ export class Menu {
       separator: true,
       items: [
         {
+          icon:'heroFolderOpen',
           label: 'Overview',
           route: '/overview',
           children: [
@@ -34,6 +36,7 @@ export class Menu {
       separator: false,
       items: [
         {
+          icon: 'heroPhoto',
           label: 'Box Recognition Model',
           route: '/ai',
         }

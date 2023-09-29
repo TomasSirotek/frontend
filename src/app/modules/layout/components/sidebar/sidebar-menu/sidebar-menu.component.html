@@ -15,7 +15,7 @@
           <div
             [ngClass]="item.active && !menuService.showSideBar ? 'text-primary-500' : ''"
             class="pointer-events-none absolute m-2">
-            <!-- <svg-icon src="{{ item.icon }}" [svgClass]="'h-5 w-5'"> </svg-icon> -->
+            <ng-icon class="text-lg" name="{{ item.icon }}"></ng-icon>
           </div>
   
           <!-- Condition -->
@@ -53,8 +53,8 @@
             *ngIf="item.children"
             [ngClass]="{ hidden: !menuService.showSideBar, 'rotate-90': item.expanded }"
             class="pointer-events-none absolute top-1 right-0 flex items-center p-1 text-gray-400 transition-all duration-500 dark:text-night-400">
-            <!-- <svg-icon src="assets/icons/heroicons/solid/chevron-right.svg" [svgClass]="'h-5 w-5'"> </svg-icon> -->
-          </button>
+            <ng-icon class="text-lg" name="heroChevronDoubleRight"></ng-icon>  
+        </button>
   
           <!-- Tooltip -->
           <div class="fixed w-full" *ngIf="!menuService.showSideBar">
