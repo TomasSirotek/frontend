@@ -23,7 +23,6 @@ export class BoxesTableComponent {
           'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
         price: 35330.9,
         type: 'Solid',
-        capacity: 1,
         status: 'Sold',
         color: 'red'
       },
@@ -34,7 +33,6 @@ export class BoxesTableComponent {
           'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
         price: 35330.9,
         type: 'Solid',
-        capacity: 1,
         status: 'Sold',
         color: 'red'
       },
@@ -45,7 +43,6 @@ export class BoxesTableComponent {
           'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
         price: 35330.9,
         type: 'Solid',
-        capacity: 1,
         status: 'Sold',
         color: 'red'
       },
@@ -56,7 +53,6 @@ export class BoxesTableComponent {
           'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
         price: 35330.9,
         type: 'Solid',
-        capacity: 1,
         status: 'Sold',
         color: 'red'
       },
@@ -67,7 +63,6 @@ export class BoxesTableComponent {
           'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
         price: 35330.9,
         type: 'Solid',
-        capacity: 1,
         status: 'Sold',
         color: 'red'
       },

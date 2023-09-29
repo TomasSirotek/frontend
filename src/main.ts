@@ -1,6 +1,6 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
-
+import { provideDialogConfig } from '@ngneat/dialog';
 
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app/app-routing.module';
@@ -16,7 +16,13 @@ if (environment.production) {
 }
 
 bootstrapApplication(AppComponent, {
-    providers: [importProvidersFrom(BrowserModule, AppRoutingModule)]
+    providers: [importProvidersFrom(BrowserModule, AppRoutingModule),
+        provideDialogConfig(
+        {
+            enableClose: false,
+            width:900,
+        }
+    )]
 })
     .catch((err) => console.error(err))
 

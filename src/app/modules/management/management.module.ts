@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [
     ManagementRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+
   ]
 })
 export class ManagementModule { }
