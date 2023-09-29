@@ -23,9 +23,9 @@ export class Menu {
         {
           icon:'heroFolderOpen',
           label: 'Overview',
-          route: '/overview',
+          route: '/management',
           children: [
-            { label: 'Boxes Management', route: '/dashboard' },
+            { label: 'Boxes Management', route: '/boxes' },
             { label: 'Orders', route: '/dashboard' },
           ],
         },
