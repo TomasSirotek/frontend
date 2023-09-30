@@ -1,0 +1,142 @@
+<div>
+  <div class="relative w-full max-w-full max-h-full">
+    <!-- Modal content -->
+    <div class="relative rounded-lg shadow dark:bg-gray-700">
+      <button
+        (click)="ref.close(true)"
+        type="button"
+        class="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+      >
+        <span class="sr-only">Close modal</span>
+      </button>
+      <div class="px-6 py-6 lg:px-8">
+        <h3 class="mb-4 text-2xl font-medium text-gray-900 dark:text-white">
+          {{ title }}
+        </h3>
+
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Left Column: Input Fields -->
+          <div class="grid grid-cols-2 gap-4">
+            
+            <div class="mb-4">
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  id="title"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.title"
+                  required
+                >
+            </div>
+            
+
+
+            <div class="mb-4">
+                <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="type"
+                  id="type"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.type"
+                  required
+                >
+            </div>
+            
+
+            <div class="mb-4">
+                <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="status"
+                  id="status"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.status"
+                  required
+                >
+            </div>
+            
+            <div class="mb-4">
+                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="price"
+                  id="price"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.price"
+                  required
+                >
+            </div>
+
+            <div class="mb-4">
+                <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input
+                  type="text"
+                  name="color"
+                  id="color"
+                  class="input-field"
+                  placeholder="Box #1"
+                  [(ngModel)]="formData.color"
+                  required
+                >
+            </div>
+
+            <div class="mb-4">
+              <label
+                for="capacity"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Image</label
+              >
+              <!-- Needs validation for correct image URL -->
+              <input
+                type="text"
+                name="imageUrlInput"
+                id="imageUrlInput"
+                placeholder="Image URL"
+                [(ngModel)]="formData.imageUrl"
+                class="input-field"
+              />
+            </div>
+
+          </div>
+
+          <!-- Right Column: Display Image -->
+          <div class="m-2 flex items-center justify-center">
+            <div
+              class="h-full w-full  border border-gray-300  dark:border-gray-500"
+            >
+              <!-- Display image here -->
+              <img
+              *ngIf="imageUrl; else defaultImage"
+              [src]="imageUrl"
+              alt="Image"
+              class="h-full w-full "
+
+            >
+            <ng-template #defaultImage>
+              <!-- Default image if no imageUrl -->
+              <img
+                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F005%2F337%2F799%2Foriginal%2Ficon-image-not-found-free-vector.jpg&f=1&nofb=1&ipt=f52452dbc48e6219fbb6733df9d739c35787b1caf2f179cc276183c09c8a39d6&ipo=images"
+                alt="Default Image"
+                class="h-full w-full "
+              >
+            </ng-template>
+            </div>
+          </div>
+
+          <button
+          (click)="onActionClick()"
+            class="w-full mt-4 rounded-md bg-blue-500 px-4 py-2.5 text-xs font-semibold text-white hover:bg-blue-400 dark:bg-night-600 dark:text-night-200 dark:hover:bg-night-500"
+          >
+            {{ action }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

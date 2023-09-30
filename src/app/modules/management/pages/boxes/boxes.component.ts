@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BoxesHeaderComponent } from '../../components/boxes/boxes-header/boxes-header.component';
@@ -11,6 +11,10 @@ import { BoxesTableComponent } from '../../components/boxes/boxes-table/boxes-ta
   templateUrl: './boxes.component.html',
   styleUrls: ['./boxes.component.scss']
 })
-export class BoxesComponent {
-
+export class BoxesComponent implements OnInit {
+  constructor() {
+  }
+  ngOnInit(): void {
+  
+  }
 }
