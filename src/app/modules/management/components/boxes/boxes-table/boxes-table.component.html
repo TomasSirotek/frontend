@@ -1,9 +1,9 @@
-   <section class="antialiased bg-gray-100 text-gray-600 h-screen ">
+   <section class="antialiased  bg-white dark:bg-night-700 text-gray-600 h-screen  ">
     <div class="flex flex-col w-full h-full">
         <!-- Table -->
-        <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+        <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200  dark:bg-night-700">
             <header class="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
-                <h2 class="font-semibold text-gray-800">All Boxes</h2>
+                <h2 class="font-semibold text-gray-800 dark:text-white">All Boxes</h2>
                
                 <div class="relative">
                   <input
@@ -22,10 +22,10 @@
 
              
               </header>
-            <div class="p-3">
-                <div class="overflow-x-auto">
+            <div class="p-3  bg-white dark:bg-night-700">
+                <div class="overflow-x-auto ">
                     <table class="table-auto w-full">
-                        <thead class="text-xs  font-semibold uppercase text-gray-400 bg-gray-50">
+                        <thead class="text-xs  font-semibold uppercase text-gray-400  bg-white dark:bg-night-700">
                             <tr>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Name</div>
@@ -47,7 +47,7 @@
                                
                             </tr>
                         </thead>
-                        <tbody class="text-sm divide-y divide-gray-100">
+                        <tbody class="text-sm divide-y divide-gray-100  bg-white dark:bg-night-700">
                             <ng-container *ngIf="searchTerm; else allItems">
                               <ng-container *ngIf="filteredInventory.length > 0; else emptyMessage">
                                 <tr
@@ -72,7 +72,7 @@
                                   *ngFor="let inventory of activeInventory"
                                   [inventory]="inventory"
                                   boxes-table-item
-                                  class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-night-600"
+                                  class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-gray-800"
                                 ></tr>
                               </ng-container>
                               <ng-template #emptyMessage>
