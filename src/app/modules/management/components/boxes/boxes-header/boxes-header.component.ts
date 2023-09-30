@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogService } from '@ngneat/dialog';
 import { BoxesModalComponent } from '../boxes-modal/boxes-modal.component';
@@ -14,9 +14,13 @@ import { BoxesModalComponent } from '../boxes-modal/boxes-modal.component';
 export class BoxesHeaderComponent implements OnInit {
   private dialog = inject(DialogService);
 
- 
+  @Input() title: string;
+  @Input() subTitle: string;
+  @Input() isDetail: boolean = true;
+
+  
   ngOnInit() {
-    this.open();
+    //this.open();
   }
 
   open() {
