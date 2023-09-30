@@ -1,52 +1,27 @@
-<!-- <div class="flex-col rounded-lg bg-white px-8 py-8 dark:bg-night-700 sm:flex-row">
-    <div class="mb-4 flex items-center justify-between">
-      <div class="flex-col items-center">
-        <h3 class="text-md font-bold text-gray-900 dark:text-night-50">Active Auctions</h3>
-        <span class="text-sm text-gray-400 dark:text-night-300">Updated 37 minutes ago</span>
-      </div>
-      <button
-        class="flex-none rounded-md bg-gray-100 px-4 py-2.5 text-xs font-semibold text-gray-500 hover:bg-gray-200 dark:bg-night-600 dark:text-night-200 dark:hover:bg-night-500">
-        History
-      </button>
-    </div>
-  
-    <div class="relative overflow-x-auto">
-      <table class="w-full table-auto">
-
-        <thead class="text-xs uppercase text-gray-400 dark:text-night-300">
-          <tr>
-            <th class="py-3 text-left">Item</th>
-            <th class="py-3 text-right">Open Price</th>
-            <th class="py-3 text-right">Price $</th>
-            <th class="py-3 text-right">Recent Offer</th>
-            <th class="py-3 text-right">Time Left</th>
-            <th class="py-3 text-right">View</th>
-          </tr>
-        </thead>
-       
-        <tbody>
-          <tr
-            *ngFor="let auction of activeAuction"
-            [auction]="auction"
-            boxes-table-item
-            class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-night-600"></tr>
-        </tbody>
-        
-      </table>
-    </div>
-  </div>
-   -->
-
-   
-
-
    <section class="antialiased bg-gray-100 text-gray-600 h-screen ">
     <div class="flex flex-col w-full h-full">
         <!-- Table -->
         <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-            <header class="px-5 py-4 border-b border-gray-100">
+            <header class="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="font-semibold text-gray-800">All Boxes</h2>
-            </header>
+               
+                <div class="relative">
+                  <input
+                    [(ngModel)]="searchTerm"
+                    (input)="filterInventory()"
+                    type="text"
+                    class="px-4 py-2 border border-gray-200 rounded-md w-40 sm:w-56 text-sm focus:ring-primary-300 focus:border-primary-300"
+                    placeholder="Search"
+                  />
+                
+                  <svg class="absolute right-2 top-2.5 w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+                <span class="sr-only">Search</span>
+                </div>
+
+             
+              </header>
             <div class="p-3">
                 <div class="overflow-x-auto">
                     <table class="table-auto w-full">
@@ -73,12 +48,43 @@
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100">
+                            <ng-container *ngIf="searchTerm; else allItems">
+                              <ng-container *ngIf="filteredInventory.length > 0; else emptyMessage">
+                                <tr
+                                  *ngFor="let inventory of filteredInventory"
+                                  [inventory]="inventory"
+                                  boxes-table-item
+                                  class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-night-600"
+                                ></tr>
+                              </ng-container>
+                              <ng-template #emptyMessage>
+                                <tr>
+                                  <td colspan="5" class="text-center py-4">
+                                    No items match your search.
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </ng-container>
+                          
+                            <ng-template #allItems>
+                              <ng-container *ngIf="activeInventory.length > 0; else emptyMessage">
                                 <tr
                                   *ngFor="let inventory of activeInventory"
                                   [inventory]="inventory"
                                   boxes-table-item
-                                  class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-night-600"></tr>
-                        </tbody>                        
+                                  class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-night-600"
+                                ></tr>
+                              </ng-container>
+                              <ng-template #emptyMessage>
+                                <tr>
+                                  <td colspan="5" class="text-center py-4">
+                                    No items to display.
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </ng-template>
+                          </tbody>
+                                 
                     </table>
                 </div>
             </div>
