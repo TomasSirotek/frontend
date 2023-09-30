@@ -54,6 +54,6 @@ export class BoxesModalComponent {
   }
   onActionClick() {
     // Access form data from this.formData
-    console.log(this.formData);
+    
   }
 }

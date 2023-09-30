@@ -63,19 +63,14 @@ export class BoxDetailComponent {
 
 
   updateBox() {
-    console.log(this.formData)
-
    // update the box catch error then and if catch error then
    this.boxService.updateBox(this.id, this.formData).then(() => {
     this.router.navigate(['/management/boxes']);
-  }).catch((err) => {
-    console.log(err);
   });
   }
 
   // TODO: Do validaiton and impletnt delete service to the http client
   deleteItem() {
-    console.log("delete item" + this.id)
     this.router.navigate(['/management/boxes']);
   }
 }
