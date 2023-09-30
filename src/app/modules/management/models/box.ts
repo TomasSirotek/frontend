@@ -9,3 +9,7 @@ export interface Box {
     description: string; // Description of the box
   }
   
+  export class ResponseDto<T>{
+    responseData?: T;
+    messageToClient?: string;
+  }

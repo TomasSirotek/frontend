@@ -1,6 +1,6 @@
 <div class="mx-auto px-4 py-4 sm:px-8 lg:container">
     <!-- Header -->
-    <app-boxes-header title="Box Detail : {{ id }}" [isDetail]="true"></app-boxes-header>
+    <app-boxes-header title="Box Detail : {{ formData.title }}" [isDetail]="true"></app-boxes-header>
     <!-- end Header -->
   
     <section class="bg-white dark:bg-gray-900">
@@ -22,17 +22,16 @@
                         </div>
                         <div class="w-full">
                             <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                            <input [(ngModel)]="formData.status" [ngModelOptions]="{standalone: true}" type="number" name="status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="Damaged" placeholder="Product status" required="">
+                            <input [(ngModel)]="formData.status" [ngModelOptions]="{standalone: true}" type="test" name="status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="Damaged" placeholder="Product status" required="">
                         </div>
                         <div>
                             <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Color</label>
-                            <select name="color"   id="color" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected="">Red</option>
-                                <option value="TV">Blue</option>
-                                <option value="PC">Orange</option>
-                                <option value="GA">White/Console</option>
-                                <option value="PH">Black</option>
-                            </select>
+                            <select name="color" id="color" [(ngModel)]="formData.color" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option [value]="'Red'" [selected]="formData.color === 'Red'">Red</option>
+                                <option [value]="'Orange'" [selected]="formData.color === 'Orange'">Orange</option>
+                                <option [value]="'White'" [selected]="formData.color === 'White'">White</option>
+                                <option [value]="'Black'" [selected]="formData.color === 'Black'">Black</option>
+                              </select>
                         </div>
                         <div>
                             <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price (EUR)</label>
@@ -47,7 +46,7 @@
             
               
                 <div class="flex items-center space-x-4">
-                    <button type="button" class="text-blue-500 inline-flex items-center hover:text-white border border-blue-500 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button (click)="updateBox()" type="button" class="text-blue-500 inline-flex items-center hover:text-white border border-blue-500 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Update
                     </button>
                     <button id="deleteButton" data-modal-toggle="deleteModal"  type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
@@ -61,13 +60,28 @@
         <div class="w-full lg:w-1/2 pl-4">
             <div class="border border-gray-300 dark:border-gray-500 h-full d-flex flex-center">
               <!-- Display image here -->
+              <div
+              class="h-full w-full  border border-gray-300  dark:border-gray-500"
+            >
+              <!-- Display image here -->
               <img
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F005%2F337%2F799%2Foriginal%2Ficon-image-not-found-free-vector.jpg&f=1&nofb=1&ipt=f52452dbc48e6219fbb6733df9d739c35787b1caf2f179cc276183c09c8a39d6&ipo=images"
-                alt="Image"
-                class="h-full w-auto"
-              >
-            </div>
+              *ngIf="formData.image"
+              [src]="formData.image"
+              alt="Image"
+              class="h-full w-full "
+
+            >
+            <ng-template #defaultImage>
+                <!-- Default image if no imageUrl -->
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F005%2F337%2F799%2Foriginal%2Ficon-image-not-found-free-vector.jpg&f=1&nofb=1&ipt=f52452dbc48e6219fbb6733df9d739c35787b1caf2f179cc276183c09c8a39d6&ipo=images"
+                  alt="Default Image"
+                  class="h-full w-full "
+                >
+              </ng-template>
           </div>
+            </div>
+            </div>
         </div>
       </section>
 

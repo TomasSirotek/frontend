@@ -1,7 +1,9 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { provideDialogConfig } from '@ngneat/dialog';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
+import { provideToastr } from 'ngx-toastr';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
@@ -22,7 +24,11 @@ bootstrapApplication(AppComponent, {
             enableClose: false,
             width:900,
         }
-    )]
+    ),
+    provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers    
+    ],
+    
 })
     .catch((err) => console.error(err))
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AlertComponent } from 'src/app/shared/component/alert/alert.component';
+
 
 @Component({
     selector: 'app-layout',
@@ -11,7 +13,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     imports: [
         RouterOutlet,
         NavbarComponent,
-        SidebarComponent
+        SidebarComponent,
+        AlertComponent,
+        
     ],
 })
 export class LayoutComponent implements OnInit {

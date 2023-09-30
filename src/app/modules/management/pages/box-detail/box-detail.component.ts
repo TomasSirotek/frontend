@@ -19,8 +19,7 @@ export class BoxDetailComponent {
 
   box: Box; 
   id: number;
-  title: string;
-
+ 
   constructor(
     private route: ActivatedRoute,
     private boxService: BoxServiceService,
@@ -31,27 +30,47 @@ export class BoxDetailComponent {
     title: '',
     type: '',
     status: '',
-    price: '',
+    price: 0,
     color: '',
-    imageUrl: '',
+    image: '',
     description: 'Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US',
   };
-
 
   ngOnInit(): void {
     // Retrieve the boxId route parameter
     const boxId = this.route.snapshot.params['id'];
-   this.id = boxId
+    this.id = boxId
+
     // // Fetch the box data based on the boxId
-    // this.boxService.getBoxById(boxId).subscribe((data) => {
-    //   this.box = data; 
-    // });
+    this.boxService.getBoxById(boxId).then((box) => {
+      this.box = box;
+      this.formData.title = box.title;
+      this.formData.type = box.type;
+      this.formData.status = box.status;
+      this.formData.price = box.price;
+      this.formData.color = box.color;
+      this.formData.image = box.image;
+      this.formData.description = box.description;
+    }
+    );
   }
 
   openModal() {
     document.addEventListener("DOMContentLoaded", function(event) {
       document.getElementById('deleteButton').click();
     });
+  }
+
+
+  updateBox() {
+    console.log(this.formData)
+
+   // update the box catch error then and if catch error then
+   this.boxService.updateBox(this.id, this.formData).then(() => {
+    this.router.navigate(['/management/boxes']);
+  }).catch((err) => {
+    console.log(err);
+  });
   }
 
   // TODO: Do validaiton and impletnt delete service to the http client
