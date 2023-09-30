@@ -27,7 +27,8 @@ export class BoxesTableComponent {
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
       {
         id: 1346772,
@@ -37,7 +38,8 @@ export class BoxesTableComponent {
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
       {
         id: 1346773,
@@ -47,7 +49,8 @@ export class BoxesTableComponent {
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
       {
         id: 1346774,
@@ -57,7 +60,8 @@ export class BoxesTableComponent {
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
       {
         id: 1346775,
@@ -67,7 +71,8 @@ export class BoxesTableComponent {
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
     ];
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Box } from '../../models/box';
@@ -6,11 +6,12 @@ import { BoxServiceService } from '../../services/box-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BoxesHeaderComponent } from '../../components/boxes/boxes-header/boxes-header.component';
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
+import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-box-detail',
   standalone: true,
-  imports: [CommonModule,BoxesHeaderComponent,ConfirmModalComponent],
+  imports: [CommonModule,BoxesHeaderComponent,ConfirmModalComponent,FormsModule],
   templateUrl: './box-detail.component.html',
   styleUrls: ['./box-detail.component.scss']
 })
@@ -18,12 +19,24 @@ export class BoxDetailComponent {
 
   box: Box; 
   id: number;
+  title: string;
 
   constructor(
     private route: ActivatedRoute,
     private boxService: BoxServiceService,
     private router: Router // Add this line
   ) {}
+
+  formData = {
+    title: '',
+    type: '',
+    status: '',
+    price: '',
+    color: '',
+    imageUrl: '',
+    description: 'Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US',
+  };
+
 
   ngOnInit(): void {
     // Retrieve the boxId route parameter
