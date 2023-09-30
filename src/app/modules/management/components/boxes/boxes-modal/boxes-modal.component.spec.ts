@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { DialogService,DialogRef } from '@ngneat/dialog';
 import { BoxesModalComponent } from './boxes-modal.component';
 
 describe('BoxesModalComponent', () => {
@@ -8,10 +8,19 @@ describe('BoxesModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BoxesModalComponent]
+      imports: [BoxesModalComponent], // Import the component here
+      providers: [
+        {
+          provide: DialogRef,
+          useValue: {}
+        },
+        DialogService
+     ],
     });
+
     fixture = TestBed.createComponent(BoxesModalComponent);
     component = fixture.componentInstance;
+    
     fixture.detectChanges();
   });
 

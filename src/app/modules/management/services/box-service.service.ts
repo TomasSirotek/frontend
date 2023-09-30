@@ -8,15 +8,15 @@ import { Observable, map } from 'rxjs';
 export class BoxServiceService {
   private dataUrl = 'boxes.json';
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  getBoxes(): Observable<any[]> {
-    return this.http.get<any[]>(this.dataUrl);
-  }
+  // getBoxes(): Observable<any[]> {
+  //   return this.http.get<any[]>(this.dataUrl);
+  // }
 
-  getBoxById(id: number): Observable<any | undefined> {
-    return this.getBoxes().pipe(
-      map((boxes) => boxes.find((box) => box.id === id))
-    );
-  }
+  // getBoxById(id: number): Observable<any | undefined> {
+  //   return this.getBoxes().pipe(
+  //     map((boxes) => boxes.find((box) => box.id === id))
+  //   );
+  // }
 }

@@ -20,7 +20,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         NgIf,
         SidebarSubmenuComponent,
         NgIconComponent,
-        RouterLinkActive
+        RouterLinkActive,
+        RouterLink
     ],
     viewProviders: [provideIcons({ heroBuildingStorefront,heroChevronDoubleRight,heroPhoto,heroFolderOpen})]
 })

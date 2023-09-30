@@ -13,6 +13,7 @@ interface Data {
   selector: 'app-boxes-modal',
   standalone: true,
   imports: [CommonModule,FormsModule,InputComponent],
+  providers: [DialogService],
   templateUrl: './boxes-modal.component.html',
   styleUrls: ['./boxes-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -20,6 +21,7 @@ interface Data {
 export class BoxesModalComponent {
   ref: DialogRef<Data, boolean> = inject(DialogRef);
   imageUrl: string | null = null;
+  
 
   formData = {
     title: '',

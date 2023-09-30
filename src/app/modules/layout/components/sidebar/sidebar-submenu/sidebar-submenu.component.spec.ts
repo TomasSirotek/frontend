@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarSubmenuComponent } from './sidebar-submenu.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SidebarSubmenuComponent', () => {
   let component: SidebarSubmenuComponent;
@@ -8,7 +9,7 @@ describe('SidebarSubmenuComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SidebarSubmenuComponent]
+      imports: [SidebarSubmenuComponent,RouterTestingModule]
     });
     fixture = TestBed.createComponent(SidebarSubmenuComponent);
     component = fixture.componentInstance;

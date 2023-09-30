@@ -19,7 +19,7 @@ export class Menu {
           label: 'Management',
           route: '/management',
           children: [
-            { label: 'Boxes Management', route: 'management/boxes' },
+            { label: 'Boxes Management', route: '/management/boxes' },
           ],
         },
       ],
@@ -35,5 +35,6 @@ export class Menu {
         }
       ],
     },
+    
   ];
 }

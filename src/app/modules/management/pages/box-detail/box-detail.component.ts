@@ -24,8 +24,8 @@ export class BoxDetailComponent {
 
   ngOnInit(): void {
     // Retrieve the boxId route parameter
-     const boxId = this.route.snapshot.params['id'];
-    this.id = boxId
+    const boxId = this.route.snapshot.params['id'];
+   this.id = boxId
     // // Fetch the box data based on the boxId
     // this.boxService.getBoxById(boxId).subscribe((data) => {
     //   this.box = data; 
