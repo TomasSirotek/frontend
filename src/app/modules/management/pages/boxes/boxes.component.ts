@@ -12,9 +12,12 @@ import { BoxesTableComponent } from '../../components/boxes/boxes-table/boxes-ta
   styleUrls: ['./boxes.component.scss']
 })
 export class BoxesComponent implements OnInit {
+
   constructor() {
   }
   ngOnInit(): void {
   
   }
+
+
 }

@@ -6,5 +6,6 @@ export interface Box {
     status:string; // sold or not or damaged
     price: number; // Price of the box
     color: string; // Color of the box
+    description: string; // Description of the box
   }
   

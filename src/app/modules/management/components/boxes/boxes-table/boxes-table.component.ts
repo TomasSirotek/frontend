@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Box } from '../../../models/box';
 import { BoxesTableItemComponent } from '../boxes-table-item/boxes-table-item.component';
+import { FormsModule, NgModel } from '@angular/forms';
 
 
 @Component({
   selector: '[boxes-table]',
   standalone: true,
-  imports: [NgFor,BoxesTableItemComponent],
+  imports: [NgFor,BoxesTableItemComponent,NgIf,FormsModule],
   templateUrl: './boxes-table.component.html',
   styleUrls: ['./boxes-table.component.scss']
 })
 export class BoxesTableComponent {
   public activeInventory: Box[] = [];
+  filteredInventory: Box[] = [];
+  searchTerm: string = '';
 
   constructor() {
     this.activeInventory = [
@@ -24,27 +27,30 @@ export class BoxesTableComponent {
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
       {
         id: 1346772,
-        title: 'Box #2',
+        title: 'Squared box',
         image:
           'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
       {
         id: 1346773,
-        title: 'Box #3',
+        title: 'Boring Box',
         image:
           'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
       {
         id: 1346774,
@@ -54,7 +60,8 @@ export class BoxesTableComponent {
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
       {
         id: 1346775,
@@ -64,8 +71,17 @@ export class BoxesTableComponent {
         price: 35330.9,
         type: 'Solid',
         status: 'Sold',
-        color: 'red'
+        color: 'red',
+        description: 'This is a box'
       },
     ];
+  }
+
+  
+
+  filterInventory() {
+    this.filteredInventory = this.activeInventory.filter((inventory) =>
+      inventory.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }
