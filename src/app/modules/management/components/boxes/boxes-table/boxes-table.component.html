@@ -1,26 +1,109 @@
-<section class="" >
-  <div class="f">
-    <!-- Table Container -->
-    <div class="w-full ">
-      <div class="cursor-pointer bg-white shadow-lg rounded-sm border border-gray-200 dark:bg-night-700 ">
-        <ngx-datatable
-        #myTable
-        class="material"
-        [columns]="columns"
-        [columnMode]="ColumnMode.force"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [rowHeight]="50"
-        [limit]="10"
-        [selected]="selected"
-        [selectionType]="SelectionType.single"
-        (select)="onSelect($event)"
-        [rows]="rows"
-      >
-      </ngx-datatable>
-
+<section class="antialiased bg-white dark:bg-night-700 text-gray-600 ">
+  <div class="flex flex-col w-full">
+    <!-- Table Container with Fixed Height -->
+    <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 dark:bg-night-700  overflow-y-auto">
+      <header class="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
+        <h2 class="font-semibold text-gray-800 dark:text-white">All Boxes</h2>
+        <div class="relative">
+          <!-- Search Input -->
+          <input
+            [(ngModel)]="searchTerm"
+            (input)="filterInventory()"
+            type="text"
+            class="px-4 py-2 border border-gray-200 rounded-md w-40 sm:w-56 text-sm focus:ring-primary-300 focus:border-primary-300"
+            placeholder="Search"
+          />
+          <svg class="absolute right-2 top-2.5 w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+          </svg>
+          <span class="sr-only">Search</span>
+        </div>
+      </header>
+      <div class="p-3 bg-white dark:bg-night-700  h-[600px] overflow-y-auto">
+        <div class="overflow-x-auto">
+          <table class="table-auto w-full">
+            <!-- Your table header goes here -->
+            <thead class="text-xs font-semibold uppercase text-gray-400 bg-white dark:bg-night-700">
+              <tr>
+                <th class="p-2 whitespace-nowrap">
+                  <div class="font-semibold text-left">Name</div>
+                </th>
+                <th class="p-2 whitespace-nowrap">
+                  <div class="font-semibold text-left">Status</div>
+                </th>
+                <th class="p-2 whitespace-nowrap">
+                  <div class="font-semibold text-left">Color</div>
+                </th>
+                <th class="p-2 whitespace-nowrap">
+                  <div class="font-semibold text-left">Price</div>
+                </th>
+                <th class="p-2 whitespace-nowrap">
+                  <div class="font-semibold text-center">Description</div>
+                </th>
+              </tr>
+            </thead>
+              <tbody class="text-sm divide-y divide-gray-100 bg-white dark:bg-night-700">
+                <ng-container *ngIf="searchTerm; else allItems">
+                  <ng-container *ngIf="pagedRows.length > 0; else emptyMessage">
+                    <tr
+                      *ngFor="let inventory of pagedRows"
+                      [inventory]="inventory"
+                      boxes-table-item
+                      class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-night-600 h-[50px]" 
+                    ></tr>
+                  </ng-container>
+                  <ng-template #emptyMessage>
+                    <tr>
+                      <td colspan="5" class="text-center py-4">
+                        No items match your search.
+                      </td>
+                    </tr>
+                  </ng-template>
+                </ng-container>
+              
+                <ng-template #allItems>
+                  <ng-container *ngIf="pagedRows.length > 0; else emptyMessage">
+                    <tr
+                      *ngFor="let inventory of pagedRows"
+                      [inventory]="inventory"
+                      boxes-table-item
+                      class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-gray-800 h-[50px]" 
+                    ></tr>
+                  </ng-container>
+                  <ng-template #emptyMessage>
+                    <tr>
+                      <td colspan="5" class="text-center py-4">
+                        No items to display.
+                      </td>
+                    </tr>
+                  </ng-template>
+                </ng-template>
+              </tbody>
+              
+          </table>
+        </div>
+      </div>
     </div>
-
+    <!-- Pagination Buttons -->
+    <div class="mt-4">
+      <button
+        [disabled]="currentPage === 1"
+        (click)="currentPage = currentPage - 1"
+        class="px-2 py-1 text-sm font-medium text-gray-900 bg-gray-200 border border-gray-300 rounded-md hover:bg-gray-300 disabled:opacity-50"
+      >
+        Previous Page
+      </button>
+      <button
+        [disabled]="endIndex === this.rows.length - 1"
+        (click)="currentPage = currentPage + 1"
+        class="ml-2 px-2 py-1 text-sm font-medium text-gray-900 bg-gray-200 border border-gray-300 rounded-md hover:bg-gray-300 disabled:opacity-50"
+      >
+        Next Page
+      </button>
     </div>
   </div>
 </section>
+
+
+
+

@@ -16,8 +16,4 @@ export class BoxesComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
-
-
-
 }

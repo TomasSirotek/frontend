@@ -7,15 +7,19 @@ import { State } from 'src/app/shared/state';
 import { NgxDatatableModule,ColumnMode,DatatableComponent,SelectionType } from '@swimlane/ngx-datatable';
 import { BoxServiceService } from '../../../services/box-service.service';
 import { Router } from '@angular/router';
+import { BoxesTableItemComponent } from '../boxes-table-item/boxes-table-item.component';
 
 @Component({
-  selector: '[boxes-table]',
+  selector: 'app-boxes-table',
   standalone: true,
-  imports: [NgFor,NgIf,FormsModule,BoxesTableComponent,NgxDatatableModule],
+  imports: [NgFor,NgIf,FormsModule,BoxesTableComponent,NgxDatatableModule,BoxesTableItemComponent],
   templateUrl: './boxes-table.component.html',
   styleUrls: ['./boxes-table.component.scss']
 })
 export class BoxesTableComponent {
+filterInventory() {
+throw new Error('Method not implemented.');
+}
   @ViewChild(DatatableComponent) table: DatatableComponent;
   @ViewChild('editTmpl', { static: true }) editTmpl: TemplateRef<any>;
   @ViewChild('hdrTpl', { static: true }) hdrTpl: TemplateRef<any>;
@@ -26,17 +30,30 @@ export class BoxesTableComponent {
   temp = [];
   loadingIndicator = true;
   selected = [];
+  currentPage = 1;     // Current page number
+itemsPerPage = 10;  // Items per page
 
- 
+// Your data source (replace with your actual data)
+
+
   columns = [{ prop: 'title' }, { name: 'type' }, { name: 'price' },{ name: 'color' }];
 
   constructor(private boxService: BoxServiceService, private state: State,private router: Router) {
     this.fetchBoxes(boxService,state); 
   }
 
-  ngOnInit(): void {
+  get startIndex(): number {
+    return (this.currentPage - 1) * this.itemsPerPage;
+  }
+  
+  get endIndex(): number {
+    const lastIndex = this.startIndex + this.itemsPerPage - 1;
+    return lastIndex < this.rows.length ? lastIndex : this.rows.length - 1;
   }
 
+  get pagedRows(): Box[] {
+    return this.rows.slice(this.startIndex, this.endIndex + 1);
+  }
 
   fetchBoxes(boxService: BoxServiceService,state : State){
     boxService.getBoxes().then(() => {
@@ -49,55 +66,49 @@ export class BoxesTableComponent {
     } );
   }
 
+  ngOnInit(): void {
+   
+  }
+
   editBox(boxId: number) {
     this.router.navigate(['/management/boxes', boxId]);
   }
 
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
+  searchTerm: string = '';
 
-    // filter our data
-    const temp = this.temp.filter(function (d) {
-      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
-    });
+ 
 
-    // update the rows
-    this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
-    this.table.offset = 0;
-  }
-  onSelect({ selected }) {
-    console.log('Select Event', selected, this.selected);
+  // filterInventory() {
+  //   this.filteredInventory = this.activeInventory.filter((inventory) =>
+  //     inventory.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+  //   );
+  // }
+  
+     
+  // add() {
+  //   this.selected.push(this.rows[1], this.rows[3]);
+  // }
 
-    this.selected.splice(0, this.selected.length);
-    this.selected.push(...selected);
-    this.editBox(this.selected[0].id)
-  }
+  // update() {
+  //   this.selected = [this.rows[1], this.rows[3]];
+  // }
 
-  add() {
-    this.selected.push(this.rows[1], this.rows[3]);
-  }
+  // remove() {
+  //   this.selected = [];
+  // }
 
-  update() {
-    this.selected = [this.rows[1], this.rows[3]];
-  }
-
-  remove() {
-    this.selected = [];
-  }
-
-  displayCheck(row) {
-    return row.name !== 'Ethel Price';
-  }
+  // displayCheck(row) {
+  //   return row.name !== 'Ethel Price';
+  // }
 
 
-  toggleExpandRow(row) {
-    console.log('Toggled Expand Row!', row);
-    this.table.rowDetail.toggleExpandRow(row);
-  }
+  // toggleExpandRow(row) {
+  //   console.log('Toggled Expand Row!', row);
+  //   this.table.rowDetail.toggleExpandRow(row);
+  // }
 
-  onDetailToggle(event) {
-    console.log('Detail Toggled', event);
-  }
+  // onDetailToggle(event) {
+  //   console.log('Detail Toggled', event);
+  // }
   
 }

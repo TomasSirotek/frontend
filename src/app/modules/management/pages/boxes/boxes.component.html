@@ -1,10 +1,11 @@
-<div class="mx-auto px-4 py-4 sm:px-8 lg:container bg-white dark:bg-night-700 ">
-    <!-- Header -->
-    <app-boxes-header subTitle="Manage all of your boxes in the factory" [isDetail]="false" title="Boxes Overview"></app-boxes-header>
-    <!-- end Header -->
+<!-- Your sidebar page -->
+<div class="mx-auto px-4 py-4 sm:px-8 lg:container sm:container bg-white dark:bg-night-700">
+  <!-- Header -->
+  <app-boxes-header subTitle="Manage all of your boxes in the factory" [isDetail]="false" title="Boxes Overview"></app-boxes-header>
+  <!-- end Header -->
 
-      <!-- Table -->
-    <div boxes-table ></div>
-        
+  <!-- Table -->
+  <div class="mx-auto">
+    <app-boxes-table></app-boxes-table>
   </div>
-  
+</div>

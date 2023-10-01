@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, firstValueFrom, map } from 'rxjs';
+import { Observable, Subject, catchError, firstValueFrom, map } from 'rxjs';
 import { Box, ResponseDto } from '../models/box';
 import { State } from 'src/app/shared/state';
 import { environment } from 'src/environments/environment.prod';
@@ -13,9 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 
 
 export class BoxServiceService {
- 
-  products: Box[] = [];
-
+  
   constructor(private http: HttpClient,private state : State,private alertService: AlertServiceService,private toastr: ToastrService) {
   }
 
@@ -29,6 +27,24 @@ export class BoxServiceService {
     return firstValueFrom(this.http.get<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + boxId)).then((res) => res.responseData);
 
   }
+
+  // create box 
+  async createBox(formData: any){
+    return firstValueFrom(this.http.post<ResponseDto<Box>>(environment.baseUrl + '/boxes', formData))
+
+      .then((res) => {
+        if (res.messageToClient) {
+          this.alertService.showSuccess(res.messageToClient);
+          this.toastr.success(res.messageToClient, 'Success');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        this.toastr.warning(err.error.messageToClient, 'Warning');
+        throw err;
+      });
+  }
+
 
   async updateBox(id: number, formData: any) {
     return firstValueFrom(this.http.put<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + id, formData))

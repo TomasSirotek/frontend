@@ -1,59 +1,86 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, ElementRef, ViewChild, EventEmitter, Output, Input } from '@angular/core';
+import { interval } from 'rxjs';
+import { DialogRef } from '@ngneat/dialog';
+import { FormBuilder, FormGroup, NgModel, ReactiveFormsModule, UntypedFormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DialogService, DialogRef } from '@ngneat/dialog';
-import { FormsModule } from '@angular/forms';
-import { InputComponent } from 'src/app/shared/components/input/input.component';
 
-interface Data {
- title: string,
- action: string,
+interface DialogData {
+  title: string;
+  withResult: boolean;
+}
+
+interface PostBoxDto{
+  title: string,
+  type: string,
+  image: string,
+  status: string,
+  price: number,
+  color: string,
+  description: string
 }
 
 @Component({
   selector: 'app-boxes-modal',
   standalone: true,
-  imports: [CommonModule,FormsModule,InputComponent,FormsModule],
-  providers: [DialogService],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './boxes-modal.component.html',
-  styleUrls: ['./boxes-modal.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoxesModalComponent {
-  ref: DialogRef<Data, boolean> = inject(DialogRef);
-  imageUrl: string | null = null;
-  
-
-  formData = {
-    title: '',
-    type: '',
-    status: '',
-    price: '',
-    color: '',
-    imageUrl: this.imageUrl,
-    description: 'Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US',
-  };
-
   @ViewChild('urlInput') urlInput: ElementRef<HTMLInputElement>;
-  
-  get title() {
-    if (!this.ref.data) return 'Hello world';
-    return this.ref.data.title;
-  }
-  get action() {
-    if (!this.ref.data) return 'Action';
-    return this.ref.data.action;
-  }
+  postDataForm: FormGroup;
+  imageUrl: string | null = null;
 
-  checkImageUrl(url: string): void {
-    // Basic URL validation (you can use a more robust approach)
-    if (url && /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg))$/i.test(url)) {
-      this.imageUrl = url;
-    } else {
-      this.imageUrl = null;
-    }
-  }
-  onActionClick() {
-    // Access form data from this.formData
+  @Input() public user;
+  @Output() passEntry: EventEmitter<any> = new EventEmitter();
+
+  constructor(
+   
+  ) { }
+
+  ngOnInit() {
     
   }
+
+  passBack() {
+    this.passEntry.emit(this.user);
+    
+  }
+  // constructor(private formBuilder: FormBuilder) {
+  //   this.postDataForm = this.formBuilder.group({
+  //     title: ['', Validators.required],
+  //     type: [''],
+  //     image: [''],
+  //     status: [''],
+  //     price: [0],
+  //     color: ['Select color'],
+  //     description: [''],
+  //   });
+  //   // Subscribe to changes in the 'image' form control
+  //   this.postDataForm.get('image')?.valueChanges.subscribe((value) => {
+  //     this.onImageUrlChange(value);
+  //   });
+  // }
+
+  // ref: DialogRef<DialogData> = inject(DialogRef);
+
+  // onImageUrlChange(value: string) {
+  //   this.imageUrl = value 
+  // }
+
+
+  // submitForm() {
+  //   if (this.postDataForm.valid) {
+  //     const postDataDto: PostBoxDto = this.postDataForm.value;
+
+  //     // check if all the values are populated
+  //     if(!postDataDto.title || !postDataDto.type || !postDataDto.image || !postDataDto.status || !postDataDto.price || !postDataDto.color || !postDataDto.description){
+  //       alert("Please fill all the fields");
+  //       return;
+  //     }
+  //     this.ref.close(postDataDto);
+  //   }
+  // }
+
+  
 }

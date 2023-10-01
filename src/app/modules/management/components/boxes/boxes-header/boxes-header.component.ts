@@ -1,8 +1,21 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, Type, ViewChild, ViewContainerRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DialogService } from '@ngneat/dialog';
+import { DialogConfig, DialogService } from '@ngneat/dialog';
 import { BoxesModalComponent } from '../boxes-modal/boxes-modal.component';
+import { ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
+import { Box } from '../../../models/box';
+import { BoxServiceService } from '../../../services/box-service.service';
+import { State } from 'src/app/shared/state';
 
+interface PostBoxDto{
+  title: string,
+  type: string,
+  image: string,
+  status: string,
+  price: number,
+  color: string,
+  description: string
+}
 @Component({
   selector: 'app-boxes-header',
   standalone: true,
@@ -11,25 +24,55 @@ import { BoxesModalComponent } from '../boxes-modal/boxes-modal.component';
   styleUrls: ['./boxes-header.component.scss'],
   
 })
-export class BoxesHeaderComponent implements OnInit {
-  private dialog = inject(DialogService);
 
+
+export class BoxesHeaderComponent implements OnInit {
+
+  constructor(private fb: UntypedFormBuilder,private state: State) {}
+
+
+
+  private dialog = inject(DialogService);
   @Input() title: string;
   @Input() subTitle: string;
   @Input() isDetail: boolean = true;
+  @ViewChild('template', { static: true })
+
+
+  messageFromDialog: string;
+
+  dataFromDialog: PostBoxDto;
+  
+  postDataDto: PostBoxDto = {
+    title: '',
+    type: '',
+    image: '',
+    status: '',
+    price: 0,
+    color: '',
+    description: ''
+  }
+
 
   
+  
   ngOnInit() {
-    //this.open();
+    
   }
 
-  open() {
-    const dialogRef = this.dialog.open(BoxesModalComponent, {
-      // data is typed based on the passed generic
-      data: {
-        title: 'Create new box',
-        action: 'Create box'
-      },
-    });
-  }
+  
+  
+
+//   createBoxAsync(data: PostBoxDto) {
+//     // creat ebox and get all boxes 
+//     this.boxService.createBox(data).then(() => {
+//       this.boxService.getBoxes().then(() => {
+//         this.state.boxes = this.state.boxes;
+//       });
+//     });
+// }
+
+
 }
+
+
