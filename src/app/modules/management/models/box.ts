@@ -1,5 +1,5 @@
 export interface Box {
-    id: number; // Unique identifier for the box
+    id?: number; // Unique identifier for the box
     title: string; // User-friendly name or label
     type: string; // Type or category of the box
     image: string; // Image of the box
