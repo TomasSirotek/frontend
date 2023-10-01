@@ -3,6 +3,8 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Box } from '../../../models/box';
 import { BoxesTableItemComponent } from '../boxes-table-item/boxes-table-item.component';
 import { FormsModule, NgModel } from '@angular/forms';
+import { BoxServiceService } from '../../../services/box-service.service';
+import { State } from 'src/app/shared/state';
 
 
 @Component({
@@ -17,67 +19,12 @@ export class BoxesTableComponent {
   filteredInventory: Box[] = [];
   searchTerm: string = '';
 
-  constructor() {
-    this.activeInventory = [
-      {
-        id: 1346771,
-        title: 'Box #1',
-        image:
-          'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
-        price: 35330.9,
-        type: 'Solid',
-        status: 'Sold',
-        color: 'red',
-        description: 'This is a box'
-      },
-      {
-        id: 1346772,
-        title: 'Squared box',
-        image:
-          'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
-        price: 35330.9,
-        type: 'Solid',
-        status: 'Sold',
-        color: 'red',
-        description: 'This is a box'
-      },
-      {
-        id: 1346773,
-        title: 'Boring Box',
-        image:
-          'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
-        price: 35330.9,
-        type: 'Solid',
-        status: 'Sold',
-        color: 'red',
-        description: 'This is a box'
-      },
-      {
-        id: 1346774,
-        title: 'Box #4',
-        image:
-          'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
-        price: 35330.9,
-        type: 'Solid',
-        status: 'Sold',
-        color: 'red',
-        description: 'This is a box'
-      },
-      {
-        id: 1346775,
-        title: 'Box #5',
-        image:
-          'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
-        price: 35330.9,
-        type: 'Solid',
-        status: 'Sold',
-        color: 'red',
-        description: 'This is a box'
-      },
-    ];
+  constructor(private boxService: BoxServiceService, private state: State) {
+    boxService.getBoxes().then(() => {
+      this.activeInventory = state.boxes;
+    } );
+    
   }
-
-  
 
   filterInventory() {
     this.filteredInventory = this.activeInventory.filter((inventory) =>

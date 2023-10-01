@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BoxesComponent } from './boxes.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('BoxesComponent', () => {
   let component: BoxesComponent;
@@ -8,7 +10,8 @@ describe('BoxesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BoxesComponent]
+      imports: [BoxesComponent,HttpClientModule,ToastrModule.forRoot()],
+  
     });
     fixture = TestBed.createComponent(BoxesComponent);
     component = fixture.componentInstance;

@@ -9,14 +9,21 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./confirm-modal.component.scss']
 })
 export class ConfirmModalComponent {
+  @Input() isOpen: boolean = false;
   @Input() title: string = 'Confirmation';
   @Input() message: string = 'Are you sure you want to delete this item?';
 
   @Output() confirmed = new EventEmitter<void>();
-  @Output() open = new EventEmitter<void>();
-  
+  @Output() canceled = new EventEmitter<void>();
+
   confirm() {
     this.confirmed.emit();
   }
+
+  cancel() {
+    this.canceled.emit();
+  }
+
+  
   
 }
