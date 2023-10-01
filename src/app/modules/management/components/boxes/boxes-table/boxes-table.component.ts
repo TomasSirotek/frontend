@@ -8,15 +8,17 @@ import { NgxDatatableModule,ColumnMode,DatatableComponent,SelectionType } from '
 import { BoxServiceService } from '../../../services/box-service.service';
 import { Router } from '@angular/router';
 import { BoxesTableItemComponent } from '../boxes-table-item/boxes-table-item.component';
+import { BoxesModalComponent } from '../boxes-modal/boxes-modal.component';
 
 @Component({
   selector: 'app-boxes-table',
   standalone: true,
-  imports: [NgFor,NgIf,FormsModule,BoxesTableComponent,NgxDatatableModule,BoxesTableItemComponent],
+  imports: [NgFor,NgIf,FormsModule,BoxesTableComponent,NgxDatatableModule,BoxesTableItemComponent,BoxesModalComponent],
   templateUrl: './boxes-table.component.html',
   styleUrls: ['./boxes-table.component.scss']
 })
 export class BoxesTableComponent {
+
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   @ViewChild('editTmpl', { static: true }) editTmpl: TemplateRef<any>;
@@ -62,6 +64,14 @@ export class BoxesTableComponent {
     } );
   }
 
+  handleData(data: any) {
+    // Handle the emitted data here
+    console.log('Received data:', data);
+    // this.boxService.createBox(data).then(() => {
+    //   this.fetchBoxes(this.boxService,this.state);
+    // } 
+    // );
+  }
   ngOnInit(): void {
    
   }
@@ -101,31 +111,5 @@ export class BoxesTableComponent {
   }
 
   
-     
-  // add() {
-  //   this.selected.push(this.rows[1], this.rows[3]);
-  // }
-
-  // update() {
-  //   this.selected = [this.rows[1], this.rows[3]];
-  // }
-
-  // remove() {
-  //   this.selected = [];
-  // }
-
-  // displayCheck(row) {
-  //   return row.name !== 'Ethel Price';
-  // }
-
-
-  // toggleExpandRow(row) {
-  //   console.log('Toggled Expand Row!', row);
-  //   this.table.rowDetail.toggleExpandRow(row);
-  // }
-
-  // onDetailToggle(event) {
-  //   console.log('Detail Toggled', event);
-  // }
-  
+    
 }

@@ -6,6 +6,8 @@ import { ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { Box } from '../../../models/box';
 import { BoxServiceService } from '../../../services/box-service.service';
 import { State } from 'src/app/shared/state';
+import { Modal } from 'flowbite'
+import type { ModalOptions, ModalInterface } from 'flowbite'
 
 interface PostBoxDto{
   title: string,
@@ -27,6 +29,7 @@ interface PostBoxDto{
 
 
 export class BoxesHeaderComponent implements OnInit {
+
 
   constructor(private fb: UntypedFormBuilder,private state: State) {}
 
@@ -57,6 +60,10 @@ export class BoxesHeaderComponent implements OnInit {
   
   
   ngOnInit() {
+    
+  }
+
+  openModal() {
     
   }
 

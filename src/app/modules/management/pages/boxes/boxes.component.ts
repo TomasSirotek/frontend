@@ -5,10 +5,11 @@ import { BoxesHeaderComponent } from '../../components/boxes/boxes-header/boxes-
 import { BoxesTableComponent } from '../../components/boxes/boxes-table/boxes-table.component';
 
 import { NgxDatatableModule,ColumnMode,DatatableComponent } from '@swimlane/ngx-datatable';
+import { BoxesModalComponent } from '../../components/boxes/boxes-modal/boxes-modal.component';
 @Component({
   selector: 'app-boxes',
   standalone: true,
-  imports: [ CommonModule,BoxesHeaderComponent,BoxesTableComponent,NgxDatatableModule],
+  imports: [ CommonModule,BoxesHeaderComponent,BoxesTableComponent,NgxDatatableModule,BoxesModalComponent],
   templateUrl: './boxes.component.html',
   styleUrls: ['./boxes.component.scss']
 })
