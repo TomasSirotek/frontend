@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BoxesHeaderComponent } from '../../components/boxes/boxes-header/boxes-header.component';
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
 import { FormsModule, NgModel } from '@angular/forms';
-
+import { Modal } from 'flowbite';
+import type { ModalOptions, ModalInterface } from 'flowbite'
 @Component({
   selector: 'app-box-detail',
   standalone: true,
@@ -17,14 +18,39 @@ import { FormsModule, NgModel } from '@angular/forms';
 })
 export class BoxDetailComponent {
 
+  
   box: Box; 
   id: number;
- 
+  isDeleteModalOpen = true;
+  modal: ModalInterface
+
   constructor(
     private route: ActivatedRoute,
     private boxService: BoxServiceService,
     private router: Router // Add this line
-  ) {}
+  ) {
+   
+  }
+
+  setupModal() {
+    const $modalElement: HTMLElement = document.querySelector('#modalEl');
+
+   const modalOptions: ModalOptions = {
+       placement: 'center',
+       backdrop: 'dynamic',
+       backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+       closable: true,
+       onHide: () => {
+       },
+       onShow: () => {
+       },
+       onToggle: () => {
+       },
+   }
+   
+   this.modal =  new Modal($modalElement, modalOptions);
+   
+  }
 
   formData = {
     title: '',
@@ -55,11 +81,11 @@ export class BoxDetailComponent {
     );
   }
 
-  openModal() {
-    document.addEventListener("DOMContentLoaded", function(event) {
-      document.getElementById('deleteButton').click();
-    });
-  }
+  // openModal() {
+  //   document.addEventListener("DOMContentLoaded", function(event) {
+  //     document.getElementById('deleteButton').click();
+  //   });
+  // }
 
 
   updateBox() {
@@ -71,6 +97,23 @@ export class BoxDetailComponent {
 
   // TODO: Do validaiton and impletnt delete service to the http client
   deleteItem() {
-    this.router.navigate(['/management/boxes']);
+    this.boxService.deleteBox(this.id).then(() => {
+      this.modal.hide();
+      this.router.navigate(['/management/boxes']);
+    });
   }
+
+
+  openModal() {
+   // set the modal menu element
+   this.setupModal();
+   this.modal.show();
+  }
+
+  onCanceled() {
+    this.modal.hide();
+  }
+
+
+
 }

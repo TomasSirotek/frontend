@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 
 
 export class BoxServiceService {
+ 
   products: Box[] = [];
 
   constructor(private http: HttpClient,private state : State,private alertService: AlertServiceService,private toastr: ToastrService) {
@@ -24,14 +25,29 @@ export class BoxServiceService {
     this.state.boxes = res.responseData;
   }
 
-  getBoxById(boxId: number): Promise<Box> {
+  async getBoxById(boxId: number): Promise<Box> {
     return firstValueFrom(this.http.get<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + boxId)).then((res) => res.responseData);
 
   }
 
-  updateBox(id: number, formData: any) {
+  async updateBox(id: number, formData: any) {
     return firstValueFrom(this.http.put<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + id, formData))
 
+      .then((res) => {
+        if (res.messageToClient) {
+          this.alertService.showSuccess(res.messageToClient);
+          this.toastr.success(res.messageToClient, 'Success');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        this.toastr.warning(err.error.messageToClient, 'Warning');
+        throw err;
+      });
+  }
+
+  async deleteBox(id: number) {
+    return firstValueFrom(this.http.delete<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + id))
       .then((res) => {
         if (res.messageToClient) {
           this.alertService.showSuccess(res.messageToClient);
