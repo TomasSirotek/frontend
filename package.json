@@ -27,6 +27,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.10",
     "angular-svg-icon": "^16.1.0",
+    "apexcharts": "^3.43.0",
     "autoprefixer": "^10.4.16",
     "flowbite": "^1.8.1",
     "i": "^0.3.7",

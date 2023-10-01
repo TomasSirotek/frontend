@@ -16,6 +16,7 @@ import type { ModalOptions, ModalInterface } from 'flowbite'
   templateUrl: './box-detail.component.html',
   styleUrls: ['./box-detail.component.scss']
 })
+
 export class BoxDetailComponent {
 
   

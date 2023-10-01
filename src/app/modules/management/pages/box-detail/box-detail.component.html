@@ -7,22 +7,21 @@
         <div class="px-8 py-8 mx-auto lg:py-16 flex flex-wrap">
 
             <div class="w-full lg:w-1/2 mb-4 lg:mb-0 pr-4">
-            
-            
                 <form action="#">
                     <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
           
                         <div class="sm:col-span-2">
                             <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Title</label>
-                            <input [(ngModel)]="formData.title" [ngModelOptions]="{standalone: true}" type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="Apple iMac 27&ldquo;" placeholder="Type product title" required="">
+                            <input [(ngModel)]="formData.title" [ngModelOptions]="{standalone: true}" type="test" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  placeholder="Product type" required>
                         </div>
+                        
                         <div class="w-full">
-                            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product type</label>
-                            <input [(ngModel)]="formData.type" [ngModelOptions]="{standalone: true}" type="text" name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="Apple" placeholder="Product type" required="">
+                            <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product type</label>
+                            <input [(ngModel)]="formData.type" [ngModelOptions]="{standalone: true}" type="test" name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  placeholder="Product type" required>
                         </div>
                         <div class="w-full">
                             <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                            <input [(ngModel)]="formData.status" [ngModelOptions]="{standalone: true}" type="test" name="status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="Damaged" placeholder="Product status" required="">
+                            <input [(ngModel)]="formData.status" [ngModelOptions]="{standalone: true}" type="test" name="status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  placeholder="Product status" required>
                         </div>
                         <div>
                             <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Color</label>
@@ -34,9 +33,9 @@
                               </select>
                         </div>
                         <div>
-                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price (EUR)</label>
-                            <input [(ngModel)]="formData.price"  [ngModelOptions]="{standalone: true}" type="text" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="300" placeholder="299.99" required="">
-                        </div> 
+                            <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                            <input [(ngModel)]="formData.price" [ngModelOptions]="{standalone: true}" type="test" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  placeholder="Product status" required>
+                        </div>
                         <div class="sm:col-span-2">
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                             <textarea name="description"  [(ngModel)]="formData.description" [ngModelOptions]="{standalone: true}" id="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a product description here..."></textarea>
