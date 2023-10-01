@@ -31,10 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/tailwindcss/base.css",
-              "node_modules/@swimlane/ngx-datatable/index.css",
-              "node_modules/@swimlane/ngx-datatable/themes/material.scss",
-              "node_modules/@swimlane/ngx-datatable/assets/icons.css"
+              "node_modules/tailwindcss/base.css"
             ],
             "scripts": [
               "node_modules/flowbite/dist/flowbite.js"

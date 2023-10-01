@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ThemeService } from './core/services/theme.service';
 import { RouterOutlet } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { ResponsiveHelperComponent } from './shared/components/responsive-helper/responsive-helper.component';
 import { AlertComponent } from './shared/component/alert/alert.component';
-
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,11 @@ import { AlertComponent } from './shared/component/alert/alert.component';
   imports: [NgClass, RouterOutlet, ResponsiveHelperComponent,AlertComponent],
   
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontend';
 
   constructor(public themeService: ThemeService) {}
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }

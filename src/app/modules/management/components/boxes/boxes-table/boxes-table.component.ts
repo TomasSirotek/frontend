@@ -17,9 +17,7 @@ import { BoxesTableItemComponent } from '../boxes-table-item/boxes-table-item.co
   styleUrls: ['./boxes-table.component.scss']
 })
 export class BoxesTableComponent {
-filterInventory() {
-throw new Error('Method not implemented.');
-}
+
   @ViewChild(DatatableComponent) table: DatatableComponent;
   @ViewChild('editTmpl', { static: true }) editTmpl: TemplateRef<any>;
   @ViewChild('hdrTpl', { static: true }) hdrTpl: TemplateRef<any>;
@@ -31,10 +29,7 @@ throw new Error('Method not implemented.');
   loadingIndicator = true;
   selected = [];
   currentPage = 1;     // Current page number
-itemsPerPage = 10;  // Items per page
-
-// Your data source (replace with your actual data)
-
+  itemsPerPage = 11;  // Items per page
 
   columns = [{ prop: 'title' }, { name: 'type' }, { name: 'price' },{ name: 'color' }];
 
@@ -56,13 +51,14 @@ itemsPerPage = 10;  // Items per page
   }
 
   fetchBoxes(boxService: BoxServiceService,state : State){
+    this.isLoading = true;
     boxService.getBoxes().then(() => {
       this.temp = [...state.boxes];
       this.rows = state.boxes;
       
       setTimeout(() => {
-        this.loadingIndicator = false;
-      }, 1500);
+        this.isLoading = false;
+      }, 500);
     } );
   }
 
@@ -75,14 +71,35 @@ itemsPerPage = 10;  // Items per page
   }
 
   searchTerm: string = '';
+  // Initialize isLoading flag
+  isLoading: boolean = false;
+
+  // Initialize searchTerm
+
+  // Initialize filteredRows array
+  filteredRows: any[] = [];
 
  
 
-  // filterInventory() {
-  //   this.filteredInventory = this.activeInventory.filter((inventory) =>
-  //     inventory.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-  //   );
-  // }
+  filterInventory() {
+    // Set isLoading to true while filtering/loading data
+
+    // Simulate an API call (replace with actual API call)
+   
+      if (this.searchTerm.trim() === '') {
+        // If search term is empty, show all items
+        this.filteredRows = this.rows.slice(); // Copy all items
+      } else {
+        // If search term is provided, filter the items
+        const lowerCaseSearchTerm = this.searchTerm.trim().toLowerCase();
+        this.filteredRows = this.rows.filter((inventory) =>
+          inventory.title.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+      }
+    // Reset the current page to 1 after filtering
+    this.currentPage = 1;
+  }
+
   
      
   // add() {
