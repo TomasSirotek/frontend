@@ -66,11 +66,10 @@ export class BoxesTableComponent {
 
   handleData(data: any) {
     // Handle the emitted data here
-    console.log('Received data:', data);
-    // this.boxService.createBox(data).then(() => {
-    //   this.fetchBoxes(this.boxService,this.state);
-    // } 
-    // );
+    this.boxService.createBox(data).then(() => {
+      this.fetchBoxes(this.boxService,this.state);
+    } 
+    );
   }
   ngOnInit(): void {
    

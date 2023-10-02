@@ -146,7 +146,7 @@ export class ApexChartComponent {
         align: "center",
         style: {
           color: "#444",
-          fontSize: "18px"
+          fontSize: "16px"
         }
       }
     };

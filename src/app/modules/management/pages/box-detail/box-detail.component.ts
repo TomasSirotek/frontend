@@ -6,9 +6,10 @@ import { BoxServiceService } from '../../services/box-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BoxesHeaderComponent } from '../../components/boxes/boxes-header/boxes-header.component';
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
-import { FormsModule, NgModel } from '@angular/forms';
+import {  FormsModule, NgModel } from '@angular/forms';
 import { Modal } from 'flowbite';
 import type { ModalOptions, ModalInterface } from 'flowbite'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-box-detail',
   standalone: true,
@@ -25,14 +26,40 @@ export class BoxDetailComponent {
   isDeleteModalOpen = true;
   modal: ModalInterface
 
+    
+
+  formData: {
+    title: string;
+    type: string;
+    status: string;
+    price: number;
+    color: string;
+    image: string;
+    description: string;
+  };
+
+  formGroup: FormGroup;
+
   constructor(
     private route: ActivatedRoute,
     private boxService: BoxServiceService,
-    private router: Router // Add this line
+    private router: Router, // Add this line,
+    private fb: FormBuilder
   ) {
-   
-  }
+    this.formData = {
+      title: '',
+      type: '',
+      status: '',
+      price: 0,
+      color: '',
+      image: '',
+      description: '', // Set your default description here
+    };
 
+    this.formGroup = this.fb.group({
+      status: ['', [Validators.required, Validators.pattern(/^(New|Damaged|Old)$/)]],
+    });
+  }
   setupModal() {
     const $modalElement: HTMLElement = document.querySelector('#modalEl');
 
@@ -53,15 +80,8 @@ export class BoxDetailComponent {
    
   }
 
-  formData = {
-    title: '',
-    type: '',
-    status: '',
-    price: 0,
-    color: '',
-    image: '',
-    description: 'Standard glass, 3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US',
-  };
+  
+
 
   ngOnInit(): void {
     // Retrieve the boxId route parameter
