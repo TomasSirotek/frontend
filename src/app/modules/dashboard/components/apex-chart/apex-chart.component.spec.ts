@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApexChartComponent } from './apex-chart.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+
 
 describe('ApexChartComponent', () => {
   let component: ApexChartComponent;
@@ -8,7 +11,7 @@ describe('ApexChartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ApexChartComponent]
+      imports: [ApexChartComponent,HttpClientModule,ToastrModule.forRoot()]
     });
     fixture = TestBed.createComponent(ApexChartComponent);
     component = fixture.componentInstance;

@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgApexchartsModule } from "ng-apexcharts";
+import { ApexTooltip, NgApexchartsModule } from "ng-apexcharts";
 
 import {
   ApexAxisChartSeries,
@@ -13,6 +13,9 @@ import {
   ApexXAxis,
   ApexFill
 } from "ng-apexcharts";
+import { DashboardServiceService } from '../../service/dashboard-service.service';
+import { State } from 'src/app/shared/state';
+import { DashboardData } from '../../models/DashboardData';
 
 
 export type ChartOptions = {
@@ -24,6 +27,7 @@ export type ChartOptions = {
   xaxis: ApexXAxis;
   fill: ApexFill;
   title: ApexTitleSubtitle;
+  tooltip: ApexTooltip;
 };
 
 @Component({
@@ -34,121 +38,140 @@ export type ChartOptions = {
   styleUrls: ['./apex-chart.component.scss']
 })
 
-export class ApexChartComponent {
+export class ApexChartComponent implements OnInit{
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+  data: DashboardData[] = [];
+  
 
-  constructor() {
+  temp = [];
+  isLoading: boolean = false;
+
+  ngOnInit() {
+   
+   
+  }
+  
+  async fetchData(boxService: DashboardServiceService, state: State) {
+    this.isLoading = true;
+  
+    try {
+      // Await the result of the API call and assign it to this.data
+      this.data = await boxService.getChartData();
+  
+      // Assign the fetched data to the state
+      state.chartData = this.data;
+      
+      this.processData()
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 500);
+    } catch (error) {
+      // Handle the error
+  
+    }
+  }
+
+  constructor(private state: State,private dashboardService: DashboardServiceService) {
+    this.fetchData(dashboardService,state);
+  }
+
+  ngOnDestroy() {
+    console.log("destroyed")
+    console.log(this.state.boxes)
+  }
+
+  processData() {
+    // Initialize an array to hold the total sales for each month (initially all zeros)
+    const monthlySales = Array(12).fill(0);
+    
+    // Initialize an array to hold the box names for each month
+    const monthlyBoxNames = Array(12).fill([]);
+  
+    // Loop through the data to accumulate total sales and box names for each month
+    this.data.forEach((item) => {
+      const date = new Date(item.orderDate);
+      const month = date.getMonth();
+      const totalSales = item.totalSales;
+      const boxTitle = item.boxTitle;
+  
+      // Accumulate total sales
+      monthlySales[month] += totalSales;
+  
+      // Add box name to the corresponding month's array
+      monthlyBoxNames[month].push(boxTitle);
+    });
+  
+    // Create the chartOptions using the accumulated monthly sales data
     this.chartOptions = {
       series: [
         {
-          name: "Order",
-          data: [350, 222, 750, 550, 330, 255, 180, 620, 157, 159, 500, 240]
+          name: "Total Sales",
+          data: monthlySales
         }
       ],
       chart: {
         height: 350,
-        type: "bar"
+        type: 'bar'
       },
       plotOptions: {
         bar: {
+          horizontal: false,
           dataLabels: {
-            position: "top" // top, center, bottom
+            position: 'top'
           }
+        }
+      },
+      yaxis: {
+        title: {
+          text: "EUR (hunders)"
         }
       },
       dataLabels: {
         enabled: true,
-        formatter: function(val) {
-          return val + " " + "EUR";
+        formatter: function (val) {
+          return val + ' EUR';
         },
         offsetY: -20,
         style: {
-          fontSize: "12px",
-          colors: ["#304758"]
+          fontSize: '12px',
+          colors: ['#304758']
         }
       },
-
       xaxis: {
         categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
+          'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
         ],
-        position: "top",
         labels: {
-          offsetY: -18
-        },
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        crosshairs: {
-          fill: {
-            type: "gradient",
-            gradient: {
-              colorFrom: "#D8E3F0",
-              colorTo: "#BED1E6",
-              stops: [0, 100],
-              opacityFrom: 0.4,
-              opacityTo: 0.5
-            }
-          }
-        },
-        tooltip: {
-          enabled: true,
-          offsetY: -35
-        }
-      },
-      fill: {
-        type: "gradient",
-        gradient: {
-          shade: "light",
-          type: "horizontal",
-          shadeIntensity: 0.25,
-          gradientToColors: undefined,
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [50, 0, 100, 100]
-        }
-      },
-      yaxis: {
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        labels: {
-          show: false,
-          formatter: function(val) {
-            return val + "%";
+          formatter: function (val) {
+            return val;
           }
         }
       },
-      title: {
-        text: "Past orders from 2023",
-        floating: false,
-        offsetY: 325,
-        align: "center",
-        style: {
-          color: "#444",
-          fontSize: "16px"
+      tooltip: {
+        custom: function({ series, seriesIndex, dataPointIndex }) {
+          const monthBoxNames = monthlyBoxNames[dataPointIndex].slice(0, 10).join(', '); // Limit to 10 box names
+    
+          return `
+            <div style="background: #fff; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+
+              <div><strong>Box this month sold:</strong></div>
+              <ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;">
+                ${monthBoxNames.split(', ').map(name => `<li>${name}</li>`).join('')}
+              </ul>
+            </div>
+          `;
         }
       }
     };
   }
+  
+
+
 }
+
+
+
+

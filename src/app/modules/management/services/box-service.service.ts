@@ -18,14 +18,32 @@ export class BoxServiceService {
   }
 
   async getBoxes(): Promise<void> {
-    const res: any = await firstValueFrom(this.http.get<ResponseDto<Box[]>>(environment.baseUrl + '/boxes'));
+    try {
+      const res: any = await firstValueFrom(
+        this.http.get<ResponseDto<Box[]>>(environment.baseUrl + '/boxes')
+      );
 
-    this.state.boxes = res.responseData;
+      this.state.boxes = res.responseData;
+    } catch (error) {
+      // Handle the error and display a Toastr error message
+      this.toastr.error('Failed to fetch boxes. Please try again later.');
+    }
   }
 
   async getBoxById(boxId: number): Promise<Box> {
-    return firstValueFrom(this.http.get<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + boxId)).then((res) => res.responseData);
+    try {
+      const res: any = await firstValueFrom(
+        this.http.get<ResponseDto<Box>>(
+          environment.baseUrl + '/boxes/' + boxId
+        )
+      );
 
+      return res.responseData;
+    } catch (error) {
+      // Handle the error and display a Toastr error message
+      this.toastr.error('Failed to fetch box by ID. Please try again later.');
+      throw error; // Re-throw the error so the caller can handle it as needed
+    }
   }
 
   // create box 
@@ -47,7 +65,7 @@ export class BoxServiceService {
 
 
   async updateBox(id: number, formData: any) {
-    return firstValueFrom(this.http.put<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + id, formData))
+    return await firstValueFrom(this.http.put<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + id, formData))
 
       .then((res) => {
         if (res.messageToClient) {

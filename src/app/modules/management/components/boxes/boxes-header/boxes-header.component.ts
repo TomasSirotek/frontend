@@ -8,6 +8,7 @@ import { BoxServiceService } from '../../../services/box-service.service';
 import { State } from 'src/app/shared/state';
 import { Modal } from 'flowbite'
 import type { ModalOptions, ModalInterface } from 'flowbite'
+import { ModalServiceService } from 'src/app/shared/service/modal-service.service';
 
 interface PostBoxDto{
   title: string,
@@ -29,10 +30,19 @@ interface PostBoxDto{
 
 
 export class BoxesHeaderComponent implements OnInit {
+  @Output() dataEmitter = new EventEmitter<any>();
 
 
-  constructor(private fb: UntypedFormBuilder,private state: State) {}
 
+  constructor(private fb: UntypedFormBuilder,private state: State,private modalService: ModalServiceService) {
+  }
+
+
+
+  openModal() {
+    this.modalService.openModal();
+    
+  }
 
 
   private dialog = inject(DialogService);
@@ -43,7 +53,6 @@ export class BoxesHeaderComponent implements OnInit {
 
 
   messageFromDialog: string;
-
   dataFromDialog: PostBoxDto;
   
   postDataDto: PostBoxDto = {
@@ -58,15 +67,14 @@ export class BoxesHeaderComponent implements OnInit {
 
 
   
+
+  
   
   ngOnInit() {
     
   }
 
-  openModal() {
-    
-  }
-
+  
   
   
 

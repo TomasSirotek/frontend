@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManagementComponent } from './management.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 describe('ManagementComponent', () => {
@@ -9,7 +10,7 @@ describe('ManagementComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ManagementComponent],
+      imports: [ManagementComponent,HttpClientModule],
     });
     fixture = TestBed.createComponent(ManagementComponent);
     component = fixture.componentInstance;
