@@ -9,13 +9,6 @@ describe('BoxesModalComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BoxesModalComponent], // Import the component here
-      providers: [
-        {
-          provide: DialogRef,
-          useValue: {}
-        },
-        DialogService
-     ],
     });
 
     fixture = TestBed.createComponent(BoxesModalComponent);

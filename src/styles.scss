@@ -3,10 +3,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@import 'flowbite/dist/flowbite.css';
 // regular style toast
 @import 'ngx-toastr/toastr';
-
 
 
 @layer base {
@@ -43,6 +41,8 @@
 		@apply pointer-events-auto block scale-100 animate-fade-in-up opacity-100 duration-200;
 	}
 }
+
+
 
 
 

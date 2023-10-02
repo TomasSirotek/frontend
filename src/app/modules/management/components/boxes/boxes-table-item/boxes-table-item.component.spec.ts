@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BoxesTableItemComponent } from './boxes-table-item.component';
+
+
 
 describe('BoxesTableItemComponent', () => {
   let component: BoxesTableItemComponent;
