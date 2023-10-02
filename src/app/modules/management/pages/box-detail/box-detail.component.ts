@@ -50,7 +50,7 @@ export class BoxDetailComponent {
       title: '',
       type: '',
       status: '',
-      price: 0,
+      price: null,
       color: '',
       image: '',
       description: '', // Set your default description here
@@ -60,6 +60,9 @@ export class BoxDetailComponent {
       status: ['', [Validators.required, Validators.pattern(/^(New|Damaged|Old)$/)]],
     });
   }
+
+
+
   setupModal() {
     const $modalElement: HTMLElement = document.querySelector('#modalEl');
 

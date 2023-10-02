@@ -64,13 +64,20 @@ export class BoxesTableComponent {
     } );
   }
 
+
+  // sending data here to api 
+
+
   handleData(data: any) {
-    // Handle the emitted data here
+    
     this.boxService.createBox(data).then(() => {
       this.fetchBoxes(this.boxService,this.state);
     } 
-    );
+   );
   }
+
+
+  
   ngOnInit(): void {
    
   }
