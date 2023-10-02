@@ -15,6 +15,11 @@ const routes: Routes = [
     component: LayoutComponent,
     loadChildren: () => import('../management/management.module').then((m) => m.ManagementModule),
   },
+  {
+    path: 'ai',
+    component: LayoutComponent,
+    loadChildren: () => import('../ai/ai.module').then((m) => m.AiModule),
+  },
 ];
 
 @NgModule({

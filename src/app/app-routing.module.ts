@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'management',
     loadChildren: () => import('./modules/management/management.module').then((m) => m.ManagementModule),
   },
+  {
+    path: 'ai',
+    loadChildren: () => import('./modules/ai/ai.module').then((m) => m.AiModule),
+  },
 ];
 
 @NgModule({

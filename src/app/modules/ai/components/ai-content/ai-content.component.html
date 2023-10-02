@@ -1,0 +1,11 @@
+<input type="file" (change)="onFileSelected($event)" />
+<button (click)="classifyImage()">Classify</button>
+
+<div *ngIf="classificationResult">
+  <h2>Classification Result</h2>
+  <ul>
+    <li *ngFor="let item of classificationResult">
+      {{ item.class }}: {{ item.score.toFixed(2) }}
+    </li>
+  </ul>
+</div>
