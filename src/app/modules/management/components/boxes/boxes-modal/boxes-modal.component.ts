@@ -109,16 +109,7 @@ export class BoxesModalComponent {
    }
 
 
-   formData = {
-     title: '',
-     type: '',
-     status: '',
-     price: null,
-     color: 'Select color',
-     image: '',
-     description: '',
-   };
-
+ 
  
  
    constructor(private fb: FormBuilder, private modalService: ModalServiceService) {

@@ -47,10 +47,6 @@
                       <ng-container *ngIf="formGroup.get('image').errors?.['required']">Image is required.</ng-container>
                       <ng-container *ngIf="formGroup.get('image').hasError('invalidUrl') && (formGroup.get('image').dirty || formGroup.get('image').touched || formSubmitted)">Please enter a valid URL.</ng-container>
 
-
-
-
-
                     </div>
                   </div>
               

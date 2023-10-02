@@ -13,16 +13,24 @@
             <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">All Colors <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
       </svg></button>
-            <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                <li>
-                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mockups</button>
-                </li>
-                </ul>
-            </div>
+      <div
+      id="dropdown"
+      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+    >
+      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+        <!-- Loop through the predefined colors and create buttons for each color -->
+        <li *ngFor="let color of definedColors">
+          <button
+            type="button"
+            class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            (click)="selectColor(color)"
+          >
+            {{ color }}
+          </button>
+        </li>
+      </ul>
+    </div>
             <div class="relative w-full">
-               
-               
                 <input  [(ngModel)]="searchTerm"
                 (input)="filterInventory()"  name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  placeholder="Search boxes" required>
 
@@ -30,7 +38,7 @@
         </div>
         </div>
       </header>
-      <div class="p-3 bg-white dark:bg-night-700  h-[600px] overflow-y-auto">
+      <div class="p-3 bg-white dark:bg-night-700  h-[550px] overflow-y-auto">
         <div class="overflow-x-auto">
           <table class="table-auto w-full">
             <!-- Your table header goes here -->

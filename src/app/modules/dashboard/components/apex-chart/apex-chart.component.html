@@ -1,6 +1,8 @@
 <section class="bg-white dark:bg-gray-900 shadow-lg py-10 h-auto">
         <div id="chart w-full h-auto">
             <apx-chart
+          
+              *ngIf="chartOptions"
               [series]="chartOptions.series"
               [chart]="chartOptions.chart"
               [dataLabels]="chartOptions.dataLabels"
@@ -9,6 +11,7 @@
               [xaxis]="chartOptions.xaxis"
               [fill]="chartOptions.fill"
               [title]="chartOptions.title"
+              [tooltip]="chartOptions.tooltip"
             ></apx-chart>
           </div>
           

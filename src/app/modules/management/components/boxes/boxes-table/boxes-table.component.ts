@@ -32,7 +32,8 @@ export class BoxesTableComponent {
   selected = [];
   currentPage = 1;     // Current page number
   itemsPerPage = 11;  // Items per page
-
+  definedColors = ['Red','Orange','White','Black']
+  selectedColor: string | null = null;
   columns = [{ prop: 'title' }, { name: 'type' }, { name: 'price' },{ name: 'color' }];
 
   constructor(private boxService: BoxServiceService, private state: State,private router: Router) {
@@ -77,9 +78,9 @@ export class BoxesTableComponent {
   }
 
 
-  
+
   ngOnInit(): void {
-   
+    
   }
 
   editBox(boxId: number) {
@@ -96,25 +97,38 @@ export class BoxesTableComponent {
   filteredRows: any[] = [];
 
  
-
   filterInventory() {
-    // Set isLoading to true while filtering/loading data
-
-    // Simulate an API call (replace with actual API call)
-   
-      if (this.searchTerm.trim() === '') {
-        // If search term is empty, show all items
-        this.filteredRows = this.rows.slice(); // Copy all items
-      } else {
-        // If search term is provided, filter the items
-        const lowerCaseSearchTerm = this.searchTerm.trim().toLowerCase();
-        this.filteredRows = this.rows.filter((inventory) =>
-          inventory.title.toLowerCase().includes(lowerCaseSearchTerm)
-        );
-      }
+    // Apply color filtering if a color is selected
+    if (this.selectedColor) {
+      this.filteredRows = this.rows.filter((inventory) =>
+        inventory.color === this.selectedColor
+      );
+    } else {
+      // Apply filtering based on search term if no color is selected
+      const lowerCaseSearchTerm = this.searchTerm.trim().toLowerCase();
+      this.filteredRows = this.rows.filter((inventory) =>
+        (!this.searchTerm.trim() || inventory.title.toLowerCase().includes(lowerCaseSearchTerm))
+      );
+    }
+  
     // Reset the current page to 1 after filtering
     this.currentPage = 1;
   }
+  
+  
+  selectColor(color: string) {
+    if (this.selectedColor === color) {
+      // Deselect the color if it's already selected
+      this.selectedColor = null;
+    } else {
+      this.selectedColor = color;
+    }
+  
+    // Call the filtering method here
+    this.filterInventory();
+  }
+  
+  
 
   
     
