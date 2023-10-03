@@ -63,8 +63,9 @@ export class ApexChartComponent implements OnInit{
       // Assign the fetched data to the state
       state.chartData = this.data;
       
-      this.processData()
+      
       setTimeout(() => {
+        this.processData()
         this.isLoading = false;
       }, 500);
     } catch (error) {
@@ -78,8 +79,6 @@ export class ApexChartComponent implements OnInit{
   }
 
   ngOnDestroy() {
-    console.log("destroyed")
-    console.log(this.state.boxes)
   }
 
   processData() {

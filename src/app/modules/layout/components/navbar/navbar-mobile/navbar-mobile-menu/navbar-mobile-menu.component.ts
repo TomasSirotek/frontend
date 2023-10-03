@@ -21,7 +21,7 @@ import { ActivatedRoute } from '@angular/router';
         NgIconComponent,
         NavbarMobileSubmenuComponent,
     ],
-    viewProviders: [provideIcons({heroChevronDoubleLeft})]
+    viewProviders: [provideIcons({heroChevronDoubleLeft,heroBuildingStorefront,heroFolderOpen})]
 
 })
 export class NavbarMobileMenuComponent implements OnInit {
