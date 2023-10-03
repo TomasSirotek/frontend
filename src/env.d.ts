@@ -11,6 +11,6 @@ interface ImportMetaEnv {
   // Add your environment variables below
   // readonly NG_APP_API_URL: string;
   [key: string]: any;
-
   
+  readonly API_URL: string;
 }
