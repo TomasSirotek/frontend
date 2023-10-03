@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApexChartComponent } from './apex-chart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { By } from '@angular/platform-browser';
 
 
 describe('ApexChartComponent', () => {

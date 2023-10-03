@@ -17,7 +17,6 @@ describe('BoxesTableComponent', () => {
     fixture = TestBed.createComponent(BoxesTableComponent);
     component = fixture.componentInstance;
 
-
     component.rows = [] as Box[];
 
     fixture.detectChanges();
@@ -72,7 +71,6 @@ describe('BoxesTableComponent', () => {
     });
   });
 
-
   describe('input search bar', () => {
     it('should render empty message when table data are empty', () => {
       component.apiConnected = true;
@@ -89,8 +87,4 @@ describe('BoxesTableComponent', () => {
       expect(emptyMessage).toBeTruthy();
     });
   });
-
-
-
-
 });
