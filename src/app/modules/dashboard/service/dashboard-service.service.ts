@@ -22,7 +22,7 @@ export class DashboardServiceService {
     try {
       const res: any = await firstValueFrom(
         this.http.get<ResponseDto<DashboardData[]>>(
-          environment.baseUrl + '/dashboard/sales'
+          environment.production + '/dashboard/sales'
         )
       );
   
