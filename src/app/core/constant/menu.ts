@@ -24,17 +24,5 @@ export class Menu {
         },
       ],
     },
-    {
-      group: 'Features',
-      separator: false,
-      items: [
-        {
-          icon: 'heroPhoto',
-          label: 'Box Recognition Model',
-          route: '/ai',
-        }
-      ],
-    },
-    
   ];
 }
