@@ -20,7 +20,7 @@ export class BoxServiceService {
   async getBoxes(): Promise<void> {
     try {
       const res: any = await firstValueFrom(
-        this.http.get<ResponseDto<Box[]>>(environment.baseUrl + '/boxes')
+        this.http.get<ResponseDto<Box[]>>(environment.production + '/boxes')
       );
 
       this.state.boxes = res.responseData;
@@ -34,7 +34,7 @@ export class BoxServiceService {
     try {
       const res: any = await firstValueFrom(
         this.http.get<ResponseDto<Box>>(
-          environment.baseUrl + '/boxes/' + boxId
+          environment.production + '/boxes/' + boxId
         )
       );
 
@@ -48,7 +48,7 @@ export class BoxServiceService {
 
   // create box 
   async createBox(formData: any){
-    return firstValueFrom(this.http.post<ResponseDto<Box>>(environment.baseUrl + '/boxes', formData))
+    return firstValueFrom(this.http.post<ResponseDto<Box>>(environment.production + '/boxes', formData))
 
       .then((res) => {
         if (res.messageToClient) {
@@ -65,7 +65,7 @@ export class BoxServiceService {
 
 
   async updateBox(id: number, formData: any) {
-    return await firstValueFrom(this.http.put<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + id, formData))
+    return await firstValueFrom(this.http.put<ResponseDto<Box>>(environment.production + '/boxes/' + id, formData))
 
       .then((res) => {
         if (res.messageToClient) {
@@ -81,7 +81,7 @@ export class BoxServiceService {
   }
 
   async deleteBox(id: number) {
-    return firstValueFrom(this.http.delete<ResponseDto<Box>>(environment.baseUrl + '/boxes/' + id))
+    return firstValueFrom(this.http.delete<ResponseDto<Box>>(environment.production + '/boxes/' + id))
       .then((res) => {
         if (res.messageToClient) {
           this.alertService.showSuccess(res.messageToClient);
