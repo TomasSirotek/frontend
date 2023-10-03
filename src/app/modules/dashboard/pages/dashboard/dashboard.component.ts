@@ -16,4 +16,5 @@ import { environment } from 'src/environments/environment.development';
 export class DashboardComponent {
  
   API_URL = environment.BASE_URL;
+  
 }

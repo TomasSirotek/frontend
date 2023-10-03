@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    BASE_URL: import.meta.env.NG_APP_ENV,
+    BASE_URL: 'https://factory-api-service.azurewebsites.net'
 };
