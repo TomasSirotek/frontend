@@ -38,10 +38,12 @@
 
   <td class="py-2 pl-2 text-right">
     <div class="flex justify-end gap-2">
-        <button (click)="editBox(inventory.id)"
+        <button type="button" data-testid="edit-btn-test" (click)="editBox(inventory.id)"
         class="border flex-none rounded-md bg-white px-4 py-2.5 text-xs font-semibold text-gray-500 hover:text-primary-500 dark:bg-night-600 dark:text-night-200 dark:hover:bg-night-500">
        Edit item
       </button>
     </div>
   </td>
+  
+
   

@@ -6,6 +6,7 @@ import { BoxesTableComponent } from '../../components/boxes/boxes-table/boxes-ta
 
 import { NgxDatatableModule,ColumnMode,DatatableComponent } from '@swimlane/ngx-datatable';
 import { BoxesModalComponent } from '../../components/boxes/boxes-modal/boxes-modal.component';
+import { Box } from '../../models/box';
 @Component({
   selector: 'app-boxes',
   standalone: true,
@@ -14,6 +15,7 @@ import { BoxesModalComponent } from '../../components/boxes/boxes-modal/boxes-mo
   styleUrls: ['./boxes.component.scss']
 })
 export class BoxesComponent implements OnInit {
+  rows: Box[] = [];
   ngOnInit(): void {
     
   }
