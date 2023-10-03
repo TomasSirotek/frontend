@@ -1,18 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
-
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+test('test go to management boxes', async ({ page, baseURL }) => {
+  // baseURL is taken directly from your web server,
+  // e.g. http://localhost:4200
+  await page.goto(baseURL + '/management/boxes');
+  // Alternatively, just use relative path, because baseURL is already
+  // set for the default context and page.
+  // For example, this will result in http://localhost:4200/foo
+  await page.goto('/management/boxes');
 });
