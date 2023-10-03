@@ -1,4 +1,4 @@
 export const environment = {
 
-    BASE_URL : import.meta.env.NG_APP_ENV,
+    BASE_URL : import.meta.env.API_URL,
 };
