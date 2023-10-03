@@ -17,7 +17,6 @@ export class DashboardServiceService {
   constructor(private http: HttpClient,private state : State,private toastr: ToastrService) {
   }
 
-
   async getChartData(): Promise<DashboardData[]> {
     try {
       const res: any = await firstValueFrom(
