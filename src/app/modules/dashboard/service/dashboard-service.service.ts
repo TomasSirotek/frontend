@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, catchError, firstValueFrom, map } from 'rxjs';
 import { State } from 'src/app/shared/state';
-import { environment } from 'src/environments/environment.prod';
 import { AlertServiceService } from 'src/app/shared/service/alert-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardData, ResponseDto } from '../models/DashboardData';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

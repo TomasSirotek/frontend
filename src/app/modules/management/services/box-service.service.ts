@@ -5,7 +5,7 @@ import { Box, ResponseDto } from '../models/box';
 import { State } from 'src/app/shared/state';
 import { AlertServiceService } from 'src/app/shared/service/alert-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment.preview';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
