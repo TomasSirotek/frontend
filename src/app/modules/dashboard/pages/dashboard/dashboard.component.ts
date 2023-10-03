@@ -14,7 +14,5 @@ import { environment } from 'src/environments/environment.development';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
- 
-  API_URL = environment.BASE_URL;
   
 }
