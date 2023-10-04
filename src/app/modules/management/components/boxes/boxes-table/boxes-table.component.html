@@ -135,9 +135,12 @@
                           startIndex,
                           endIndex
                         )
+                        let i = index
                       "
+                      
                       [inventory]="inventory"
                       boxes-table-item
+                      [attr.data-index]="i"
                       class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-night-600 h-[50px]"
                     ></tr>
                   </ng-container>
