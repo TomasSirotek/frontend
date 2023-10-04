@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarMobileComponent } from './navbar-mobile.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NavbarMobileComponent', () => {
   let component: NavbarMobileComponent;
@@ -8,7 +9,7 @@ describe('NavbarMobileComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NavbarMobileComponent]
+      imports: [NavbarMobileComponent,RouterTestingModule]
     });
     fixture = TestBed.createComponent(NavbarMobileComponent);
     component = fixture.componentInstance;
