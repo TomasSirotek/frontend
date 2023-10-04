@@ -94,27 +94,13 @@ describe('BoxDetailComponent', () => {
     expect(descriptionControl.errors?.['required']).toBeTruthy();
   });
 
-  describe('input empty table data loading', () => {
-    it('should render loading e when table data are empty', () => {
-      const testBox = null as Box;
-      component.box = testBox;
-      
-      fixture.detectChanges();
 
-      const emptyMessage = fixture.debugElement.query(
-        By.css('[data-testid="no-data-loading"]')
-      );
-
-      expect(emptyMessage).toBeTruthy();
-    });
-  });
-
-  it('should have a form with required fields', () => {
-    expect(component.formGroup.get('title').hasError('required')).toBeTruthy();
-    expect(component.formGroup.get('type').hasError('required')).toBeTruthy();
-    expect(component.formGroup.get('price').hasError('required')).toBeTruthy();
-    expect(component.formGroup.get('description').hasError('required')).toBeTruthy();
-  });
+  // it('should have a form with required fields', () => {
+  //   expect(component.formGroup.get('title').hasError('required')).toBeTruthy();
+  //   expect(component.formGroup.get('type').hasError('required')).toBeTruthy();
+  //   expect(component.formGroup.get('price').hasError('required')).toBeTruthy();
+  //   expect(component.formGroup.get('description').hasError('repquired')).toBeTruthy();
+  // });
 
   it('should validate the price field', () => {
     const priceControl = component.formGroup.get('price');

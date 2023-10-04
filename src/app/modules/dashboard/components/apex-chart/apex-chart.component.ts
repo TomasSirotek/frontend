@@ -55,13 +55,8 @@ export class ApexChartComponent implements OnInit {
 
       // Assign the fetched data to the state
       state.chartData = this.data;
-<<<<<<< HEAD
 
       this.processData();
-=======
-      
-      
->>>>>>> 253ae091a26b13d4a36a0519464234dd429c4e58
       setTimeout(() => {
         this.processData()
         this.isLoading = false;
@@ -78,12 +73,7 @@ export class ApexChartComponent implements OnInit {
     this.fetchData(dashboardService, state);
   }
 
-<<<<<<< HEAD
   ngOnDestroy() {}
-=======
-  ngOnDestroy() {
-  }
->>>>>>> 253ae091a26b13d4a36a0519464234dd429c4e58
 
   processData() {
     // Initialize an array to hold the total sales for each month (initially all zeros)
