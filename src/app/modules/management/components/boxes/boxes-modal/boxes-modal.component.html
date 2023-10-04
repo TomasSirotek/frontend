@@ -273,7 +273,7 @@
                       formGroup.get('description').touched ||
                       formSubmitted)
                   "
-                  class="text-red-500 text-sm mt-1"
+                  class="text-red-500 text-sm"
                 >
                   <div
                     *ngIf="formGroup.get('description').errors?.['required']"
@@ -298,30 +298,6 @@
               </button>
             </div>
           </form>
-
-          <div class="w-full lg:w-1/2 pl-4">
-            <div
-              class="border border-gray-300 dark:border-gray-500 h-full d-flex flex-center"
-            >
-              <div
-                class="h-full w-full border border-gray-300 dark:border-gray-500"
-              >
-                <img
-                  *ngIf="imageUrl; else defaultImage"
-                  [src]="imageUrl"
-                  alt="Image"
-                  class="h-full w-full"
-                />
-                <ng-template #defaultImage>
-                  <img
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F005%2F337%2F799%2Foriginal%2Ficon-image-not-found-free-vector.jpg&f=1&nofb=1&ipt=f52452dbc48e6219fbb6733df9d739c35787b1caf2f179cc276183c09c8a39d6&ipo=images"
-                    alt="Default Image"
-                    class="h-full w-full"
-                  />
-                </ng-template>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

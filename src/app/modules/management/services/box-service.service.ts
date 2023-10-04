@@ -57,7 +57,6 @@ export class BoxServiceService {
         }
       })
       .catch((err) => {
-        console.error(err);
         this.toastr.warning(err.error.messageToClient, 'Warning');
         throw err;
       });
@@ -74,7 +73,6 @@ export class BoxServiceService {
         }
       })
       .catch((err) => {
-        console.error(err);
         this.toastr.warning(err.error.messageToClient, 'Warning');
         throw err;
       });
@@ -89,7 +87,6 @@ export class BoxServiceService {
         }
       })
       .catch((err) => {
-        console.error(err);
         this.toastr.warning(err.error.messageToClient, 'Warning');
         throw err;
       });
