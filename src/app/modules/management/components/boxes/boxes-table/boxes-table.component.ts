@@ -4,7 +4,12 @@ import { Box } from '../../../models/box';
 import { FormsModule, NgModel } from '@angular/forms';
 import { State } from 'src/app/shared/state';
 
-import { NgxDatatableModule,ColumnMode,DatatableComponent,SelectionType } from '@swimlane/ngx-datatable';
+import {
+  NgxDatatableModule,
+  ColumnMode,
+  DatatableComponent,
+  SelectionType,
+} from '@swimlane/ngx-datatable';
 import { BoxServiceService } from '../../../services/box-service.service';
 import { Router } from '@angular/router';
 import { BoxesTableItemComponent } from '../boxes-table-item/boxes-table-item.component';
@@ -13,13 +18,20 @@ import { BoxesModalComponent } from '../boxes-modal/boxes-modal.component';
 @Component({
   selector: 'app-boxes-table',
   standalone: true,
-  imports: [NgFor,NgIf,FormsModule,BoxesTableComponent,NgxDatatableModule,BoxesTableItemComponent,BoxesModalComponent],
+  imports: [
+    NgFor,
+    NgIf,
+    FormsModule,
+    BoxesTableComponent,
+    NgxDatatableModule,
+    BoxesTableItemComponent,
+    BoxesModalComponent,
+  ],
   templateUrl: './boxes-table.component.html',
-  styleUrls: ['./boxes-table.component.scss']
+  styleUrls: ['./boxes-table.component.scss'],
 })
+
 export class BoxesTableComponent {
-
-
   @ViewChild(DatatableComponent) table: DatatableComponent;
   @ViewChild('editTmpl', { static: true }) editTmpl: TemplateRef<any>;
   @ViewChild('hdrTpl', { static: true }) hdrTpl: TemplateRef<any>;
@@ -30,20 +42,34 @@ export class BoxesTableComponent {
   temp = [];
   loadingIndicator = true;
   selected = [];
-  currentPage = 1;     // Current page number
-  itemsPerPage = 11;  // Items per page
-  definedColors = ['Red','Orange','White','Black']
+  currentPage = 1; // Current page number
+  itemsPerPage = 11; // Items per page
+  apiConnected: boolean = false;
+  definedColors = ['Red', 'Orange', 'White', 'Black'];
   selectedColor: string | null = null;
-  columns = [{ prop: 'title' }, { name: 'type' }, { name: 'price' },{ name: 'color' }];
+  columns = [
+    { prop: 'title' },
+    { name: 'type' },
+    { name: 'price' },
+    { name: 'color' },
+  ];
 
-  constructor(private boxService: BoxServiceService, private state: State,private router: Router) {
-    this.fetchBoxes(boxService,state); 
+  searchTerm: string = '';
+  isLoading: boolean = false;
+  filteredRows: any[] = [];
+
+  constructor(
+    private boxService: BoxServiceService,
+    private state: State,
+    private router: Router
+  ) {
+    this.fetchBoxes(boxService, state);
   }
 
   get startIndex(): number {
     return (this.currentPage - 1) * this.itemsPerPage;
   }
-  
+
   get endIndex(): number {
     const lastIndex = this.startIndex + this.itemsPerPage - 1;
     return lastIndex < this.rows.length ? lastIndex : this.rows.length - 1;
@@ -52,70 +78,60 @@ export class BoxesTableComponent {
   get pagedRows(): Box[] {
     return this.rows.slice(this.startIndex, this.endIndex + 1);
   }
-
-  fetchBoxes(boxService: BoxServiceService,state : State){
+  fetchBoxes(boxService: BoxServiceService, state: State) {
     this.isLoading = true;
-    boxService.getBoxes().then(() => {
-      this.temp = [...state.boxes];
-      this.rows = state.boxes;
-      
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 500);
-    } );
+  
+    boxService.getBoxes()
+      .then(() => {
+        this.temp = [...state.boxes];
+        this.rows = state.boxes;
+      })
+      .catch((error) => {
+        this.apiConnected = false;
+        
+      })
+      .finally(() => {
+        setTimeout(() => {
+          this.apiConnected = true;
+          this.isLoading = false;
+        }, 500);
+      });
   }
-
-
-  // sending data here to api 
-
+  
 
   handleData(data: any) {
-    
     this.boxService.createBox(data).then(() => {
-      this.fetchBoxes(this.boxService,this.state);
-    } 
-   );
+      this.fetchBoxes(this.boxService, this.state);
+    });
   }
 
-
-
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   editBox(boxId: number) {
     this.router.navigate(['/management/boxes', boxId]);
   }
 
-  searchTerm: string = '';
-  // Initialize isLoading flag
-  isLoading: boolean = false;
 
-  // Initialize searchTerm
-
-  // Initialize filteredRows array
-  filteredRows: any[] = [];
-
- 
   filterInventory() {
     // Apply color filtering if a color is selected
     if (this.selectedColor) {
-      this.filteredRows = this.rows.filter((inventory) =>
-        inventory.color === this.selectedColor
+      this.filteredRows = this.rows.filter(
+        (inventory) => inventory.color === this.selectedColor
       );
     } else {
       // Apply filtering based on search term if no color is selected
       const lowerCaseSearchTerm = this.searchTerm.trim().toLowerCase();
-      this.filteredRows = this.rows.filter((inventory) =>
-        (!this.searchTerm.trim() || inventory.title.toLowerCase().includes(lowerCaseSearchTerm))
+      this.filteredRows = this.rows.filter(
+        (inventory) =>
+          !this.searchTerm.trim() ||
+          inventory.title.toLowerCase().includes(lowerCaseSearchTerm)
       );
     }
-  
+
     // Reset the current page to 1 after filtering
     this.currentPage = 1;
   }
-  
-  
+
   selectColor(color: string) {
     if (this.selectedColor === color) {
       // Deselect the color if it's already selected
@@ -123,13 +139,8 @@ export class BoxesTableComponent {
     } else {
       this.selectedColor = color;
     }
-  
+
     // Call the filtering method here
     this.filterInventory();
   }
-  
-  
-
-  
-    
 }

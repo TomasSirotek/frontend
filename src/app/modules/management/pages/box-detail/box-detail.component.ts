@@ -6,12 +6,18 @@ import { BoxServiceService } from '../../services/box-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BoxesHeaderComponent } from '../../components/boxes/boxes-header/boxes-header.component';
 import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
-import {  AbstractControl, FormControl, FormsModule, NgControl, NgModel, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormsModule,
+  NgControl,
+  NgModel,
+  ReactiveFormsModule,
+  ValidatorFn,
+} from '@angular/forms';
 import { Modal } from 'flowbite';
-import type { ModalOptions, ModalInterface } from 'flowbite'
+import type { ModalOptions, ModalInterface } from 'flowbite';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-
 
 function isValidUrl(url: string): boolean {
   try {
@@ -34,29 +40,28 @@ export function urlValidator(): ValidatorFn {
   };
 }
 
-
-
-
 @Component({
   selector: 'app-box-detail',
   standalone: true,
-  imports: [CommonModule,BoxesHeaderComponent,ConfirmModalComponent,FormsModule,ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    BoxesHeaderComponent,
+    ConfirmModalComponent,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './box-detail.component.html',
-  styleUrls: ['./box-detail.component.scss']
+  styleUrls: ['./box-detail.component.scss'],
 })
-
 export class BoxDetailComponent {
   formGroup: FormGroup;
   imageUrl: string | null = null;
-  modal: ModalInterface
+  modal: ModalInterface;
   formSubmitted = false;
 
-  
-  box: Box; 
+  box: Box;
   id: number;
   isDeleteModalOpen = true;
-
-    
 
   formData: {
     title: string;
@@ -68,15 +73,14 @@ export class BoxDetailComponent {
     description: string;
   };
 
-
   async ngOnInit() {
     try {
       const boxId = this.route.snapshot.params['id'];
       this.id = boxId;
-  
+
       // Fetch the box data based on the boxId
       this.box = await this.boxService.getBoxById(boxId);
-  
+
       if (this.box) {
         this.formGroup.patchValue({
           title: this.box.title,
@@ -93,8 +97,6 @@ export class BoxDetailComponent {
     }
   }
 
-
-
   constructor(
     private route: ActivatedRoute,
     private boxService: BoxServiceService,
@@ -102,10 +104,13 @@ export class BoxDetailComponent {
     private fb: FormBuilder
   ) {
     this.formGroup = this.fb.group({
-      title: [ '', [Validators.required, Validators.minLength(5)]],
-      type: [ '', Validators.required],
-      status: [ '', [Validators.required, Validators.pattern(/^(New|Damaged|Old)$/)]],
-      color: [ 'Select color', [Validators.required, this.colorValidator]],
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      type: ['', Validators.required],
+      status: [
+        '',
+        [Validators.required, Validators.pattern(/^(New|Damaged|Old)$/)],
+      ],
+      color: ['Select color', [Validators.required, this.colorValidator]],
       image: [
         '',
         [
@@ -114,12 +119,14 @@ export class BoxDetailComponent {
           Validators.pattern(/^https?:\/\/.*$/), // Additional pattern for any URL
         ],
       ],
-      price: ['', [Validators.required, Validators.pattern(/^-?\d+(\.\d{1,2})?$/)]],
-      description: [ '', [Validators.required, Validators.minLength(1)]],
+      price: [
+        '',
+        [Validators.required, Validators.pattern(/^-?\d+(\.\d{1,2})?$/)],
+      ],
+      description: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
-  
-  
+
   colorValidator(control: FormControl) {
     const validColors = ['Red', 'Orange', 'White', 'Black'];
     if (validColors.includes(control.value)) {
@@ -129,60 +136,42 @@ export class BoxDetailComponent {
     }
   }
 
-    
   updateImageUrl() {
     const imageControl = this.formGroup.get('image');
     const inputValue = imageControl.value;
-    
+
     // Check if the URL is valid
     const isValidUrl = Validators.pattern(/^https?:\/\/.*$/)(imageControl);
-    
+
     if (isValidUrl) {
       this.imageUrl = inputValue || this.box?.image || '';
     } else {
       this.imageUrl = this.box?.image || '';
     }
   }
-  
-  
 
   setupModal() {
     const $modalElement: HTMLElement = document.querySelector('#modalEl');
 
-   const modalOptions: ModalOptions = {
-       placement: 'center',
-       backdrop: 'dynamic',
-       backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
-       closable: true,
-       onHide: () => {
-       },
-       onShow: () => {
-       },
-       onToggle: () => {
-       },
-   }
-   
-   this.modal =  new Modal($modalElement, modalOptions);
-   
+    const modalOptions: ModalOptions = {
+      placement: 'center',
+      backdrop: 'dynamic',
+      backdropClasses:
+        'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+      closable: true,
+      onHide: () => {},
+      onShow: () => {},
+      onToggle: () => {},
+    };
+
+    this.modal = new Modal($modalElement, modalOptions);
   }
 
-  
-
-
-
-
-  // openModal() {
-  //   document.addEventListener("DOMContentLoaded", function(event) {
-  //     document.getElementById('deleteButton').click();
-  //   });
-  // }
-
-
   updateBox() {
-   // update the box catch error then and if catch error then
-   this.boxService.updateBox(this.id, this.formGroup.value).then(() => {
-    this.router.navigate(['/management/boxes']);
-  });
+    // update the box catch error then and if catch error then
+    this.boxService.updateBox(this.id, this.formGroup.value).then(() => {
+      this.router.navigate(['/management/boxes']);
+    });
   }
 
   // TODO: Do validaiton and impletnt delete service to the http client
@@ -193,17 +182,13 @@ export class BoxDetailComponent {
     });
   }
 
-
   openModal() {
-   // set the modal menu element
-   this.setupModal();
-   this.modal.show();
+    // set the modal menu element
+    this.setupModal();
+    this.modal.show();
   }
 
   onCanceled() {
     this.modal.hide();
   }
-
-
-
 }

@@ -46,3 +46,6 @@ Thumbs.db
 .flaskenv*
 !.env.project
 !.env.vault
+/test-results/
+/playwright-report/
+/playwright/.cache/

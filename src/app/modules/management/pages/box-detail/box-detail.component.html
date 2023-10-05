@@ -6,7 +6,10 @@
   ></app-boxes-header>
   <!-- end Header -->
 
-  <section *ngIf="box" class="bg-white dark:bg-night-700 shadow-lg">
+  <section 
+  data-testid="box-section"
+  
+  *ngIf="box" class="bg-white dark:bg-gray-900 shadow-lg">
     <div class="px-8 py-8 mx-auto lg:py-8 flex flex-wrap">
       <div class="w-full lg:w-1/2 mb-4 lg:mb-0 pr-4">
         <form
@@ -22,6 +25,7 @@
                 >Product Title</label
               >
               <input
+              data-testid="title-detail-input"
                 required
                 formControlName="title"
                 type="test"
@@ -246,7 +250,7 @@
                   Description is required.
                 </div>
                 <div *ngIf="formGroup.get('description').errors?.['minlength']">
-                  Description must be at least 1 character long.
+                  Description must be at least 5 character long.
                 </div>
               </div>
             </div>
@@ -254,12 +258,14 @@
 
           <div class="flex items-center space-x-4">
             <button
+            data-testid="updateButton"
               type="submit"
               class="bg-primary hover:bg-blue-600 text-blue-500 inline-flex items-center hover:text-white border border-blue-500 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
               Update
             </button>
             <button
+            data-testid="deleteButton"
               (click)="openModal()"
               type="button"
               class="bg-red-500 text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
@@ -310,11 +316,11 @@
       </div>
     </div>
   </section>
-
   <div>
     <!-- Handle the case when box is undefined (e.g., show loading message or error message) -->
     <ng-container
       *ngIf="!box"
+      data-testid="loading-container"
       class="flex justify-center text-center items-center"
     >
       <div class="text-center flex items-center justify-center">
