@@ -56,6 +56,7 @@
             </div>
             <div class="relative w-full">
               <input
+                data-testid="search-input"
                 [(ngModel)]="searchTerm"
                 (input)="filterInventory()"
                 name="price"
@@ -98,10 +99,10 @@
               class="text-sm divide-y divide-gray-100 bg-white dark:bg-night-700"
             >
               <ng-container *ngIf="isLoading; else loadedItems">
-                <tr>
-                  <td colspan="5" class="text-center py-8">
+                <tr  data-testid="loading-indicator">
+                  <td  colspan="5" class="text-center py-8">
                     <div class="text-center flex items-center justify-center" data-testid="loader">
-                      <div role="status">
+                      <div role="status" >
                         <svg
                           aria-hidden="true"
                           class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -140,6 +141,7 @@
                       
                       [inventory]="inventory"
                       boxes-table-item
+                      data-testid="table-item"
                       [attr.data-index]="i"
                       class="border-b border-dashed border-gray-200 hover:bg-gray-100 dark:border-night-500 dark:hover:bg-night-600 h-[50px]"
                     ></tr>
@@ -180,6 +182,8 @@
       <button
         [disabled]="endIndex === this.rows.length - 1"
         (click)="currentPage = currentPage + 1"
+        type="button"
+        data-testid="next-page-button"
         class="ml-2 px-2 py-1 text-sm font-medium text-gray-900 bg-gray-200 border border-gray-300 rounded-md hover:bg-gray-300 disabled:opacity-50"
       >
         Next Page

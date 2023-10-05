@@ -1,13 +1,15 @@
 <div class="mx-auto px-4 py-4 sm:px-8 lg:container">
   <!-- Header -->
   <app-boxes-header
-    data-testid="box-title"
     title="Box Detail : {{ this.formGroup.get('title').value }} "
     [isDetail]="true"
   ></app-boxes-header>
   <!-- end Header -->
 
-  <section *ngIf="box" class="bg-white dark:bg-gray-900 shadow-lg">
+  <section 
+  data-testid="box-section"
+  
+  *ngIf="box" class="bg-white dark:bg-gray-900 shadow-lg">
     <div class="px-8 py-8 mx-auto lg:py-8 flex flex-wrap">
       <div class="w-full lg:w-1/2 mb-4 lg:mb-0 pr-4">
         <form
@@ -23,6 +25,7 @@
                 >Product Title</label
               >
               <input
+              data-testid="title-detail-input"
                 required
                 formControlName="title"
                 type="test"
@@ -315,6 +318,7 @@
     <!-- Handle the case when box is undefined (e.g., show loading message or error message) -->
     <ng-container
       *ngIf="!box"
+      data-testid="loading-container"
       class="flex justify-center text-center items-center"
     >
       <div class="text-center flex items-center justify-center">
