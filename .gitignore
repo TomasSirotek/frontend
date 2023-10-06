@@ -41,3 +41,11 @@ testem.log
 .DS_Store
 Thumbs.db
 .vercel
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
+/test-results/
+/playwright-report/
+/playwright/.cache/
