@@ -7,7 +7,7 @@ import { provideToastr } from 'ngx-toastr';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import { environment } from './environments/environment.development';
+import { environment } from './environments/environment';
 
 
 if (environment.production) {
